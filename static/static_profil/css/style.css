@@ -1,0 +1,14 @@
+body{
+    margin: 0px;
+    width:100%;
+
+}
+header{
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, rgb(6, 39, 107), aliceblue, rgb(6, 39, 107));    margin: 0px;
+    display: flex;
+    justify-content: center;
+    color: rgb(6, 39, 107);
+  
+}

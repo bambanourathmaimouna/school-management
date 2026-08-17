@@ -1,0 +1,66 @@
+{% extends 'template_profil/base1.html' %} {% load static %} {% block header %}
+<h1>Liste des étudiants</h1>
+{% endblock %} {% block content %} {% block css %}
+<link
+  rel="stylesheet"
+  href="{% static 'static_profil/css/liste_etudiant.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+/>
+{% endblock %}
+
+<div class="barre-outils">
+  <form class="recherche">
+    <label for="recherche-etudiant"></label>
+    <input
+      type="search"
+      name="q"
+      id="recherche-etudiant"
+      placeholder="Rechercher un professeur..."
+    />
+    <button type="submit">Rechercher</button>
+  </form>
+</div>
+
+<table class="tableau-etudiants">
+  <thead>
+    <tr>
+      <th>N°</th>
+      <th>MATRICULE</th>
+      <th>NOM</th>
+      <th>PRENOM</th>
+      <th>AGE</th>
+      <th>CLASSE</th>
+      <th>NOTES</th>
+      <th>ABSENCES</th>
+      
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for etudiant in etudiants %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ etudiant.matricule }}</td>
+      <td>{{ etudiant.nom }}</td>
+      <td>{{ etudiant.prenom }}</td>
+      <td>{{ etudiant.age }}</td>
+      <td>{{ etudiant.classe }}</td>    
+      <td>    
+        <a href="{% url 'ajouter_note' etudiant.id %}"><i class="fa-solid fa-plus"></i>Ajouter une note</a>
+      </td>
+      <td>    
+        <a href="{% url 'ajouter_absence' etudiant.id %}"><i class="fa-solid fa-plus"></i>Ajouter une absence</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="5" class="text-center">Aucun étudiant trouvé.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

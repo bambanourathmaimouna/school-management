@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'static_profil/css/login.css' %}">
+</head>
+<body>
+
+    <form action="" method="post">
+        
+        {% for message in  message %}
+            {{ message }}
+        {% endfor %}
+
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+
+        <button type="submit">Se connecter</button>
+    </form>
+
+</body>
+</html>

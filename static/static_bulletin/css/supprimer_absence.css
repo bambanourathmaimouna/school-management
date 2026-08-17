@@ -1,0 +1,148 @@
+body{
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+  }
+
+
+
+.confirmation {
+    width: 30%;
+    margin: 60px auto;
+    padding: 35px;
+    background: #c6d7f0c5;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    text-align: center;
+}
+
+
+
+
+.confirmation::before {
+    content: "⚠";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    background: #fff1f1;
+    color: #dc3545;
+    border-radius: 50%;
+    font-size: 35px;
+}
+
+
+/* TITRE */
+
+.confirmation h2 {
+    margin-bottom: 25px;
+
+    color: #333;
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+
+/* INFORMATIONS */
+
+.confirmation p {
+    margin: 12px 0;
+    color: #666;
+    font-size: 15px;
+}
+
+
+.confirmation p strong {
+    color: #333;
+}
+
+
+/* FORMULAIRE */
+
+.confirmation form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+
+/* BOUTON SUPPRIMER */
+
+.confirmation button {
+    border: none;
+
+    padding: 12px 22px;
+
+    background: #8a0916;
+    color: white;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.confirmation button:hover {
+    background: #b02a37;
+    transform: translateY(-2px);
+}
+
+
+/* BOUTON ANNULER */
+
+.confirmation form a {
+    display: inline-block;
+
+    padding: 12px 22px;
+
+    background: #6c757d;
+    color: white;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+
+.confirmation form a:hover {
+    background: #495057;
+    transform: translateY(-2px);
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .confirmation {
+        width: auto;
+        margin: 30px 15px;
+        padding: 25px 20px;
+    }
+
+    .confirmation form {
+        flex-direction: column;
+    }
+
+    .confirmation button,
+    .confirmation form a {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+}

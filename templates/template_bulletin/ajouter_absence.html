@@ -1,0 +1,22 @@
+{% extends "template_profil/base1.html" %}
+{% load static %}
+{% block header %}<h1>Ajouter une absence</h1>{% endblock %}
+{% block content %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'static_profil/css/ajouter_etudiant.css' %}">
+{% endblock %}
+
+<div class="tout">
+    <h2 class="titre"><i class="fa-solid fa-user-graduate"></i> {{ etudiant.nom }} {{ etudiant.prenom }}</h2>
+
+    <form method="post" class="formulaire" >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="bouton" >
+            <i class="fa-solid fa-floppy-disk"></i> Enregistrer
+        </button>
+    </form>
+</div>
+
+{% endblock %}

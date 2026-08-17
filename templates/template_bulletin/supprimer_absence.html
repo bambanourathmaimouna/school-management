@@ -1,0 +1,88 @@
+{% extends "template_profil/base.html" %}
+{% load static %}
+
+{% block header %}
+    <h1>SUPPRIMER UNE ABSENCE</h1>
+{% endblock %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'static_bulletin/css/supprimer_absence.css' %}">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="confirmation">
+
+    <div class="icone-avertissement">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+    </div>
+
+    <h2>
+        Voulez-vous vraiment supprimer cette absence ?
+    </h2>
+
+    <div class="informations">
+
+        <p>
+            Étudiant :
+            <strong>
+                {{ absence.etudiant.nom }}
+                {{ absence.etudiant.prenom }}
+            </strong>
+        </p>
+
+        <p>
+            Date :
+            <strong>
+                {{ absence.date|date:"d/m/Y" }}
+            </strong>
+        </p>
+
+        <p>
+            Motif :
+            <strong>
+                {{ absence.motif }}
+            </strong>
+        </p>
+
+        <p>
+            Justification :
+            <strong>
+
+                {% if absence.justification %}
+                    Justifiée
+                {% else %}
+                    Non justifiée
+                {% endif %}
+
+            </strong>
+        </p>
+
+    </div>
+
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <button type="submit" class="btn-supprimer">
+            <i class="fa-solid fa-trash"></i>
+            Oui, supprimer
+        </button>
+
+        <a
+            href="{% url 'lister_absence' %}"
+            class="btn-annuler"
+        >
+            <i class="fa-solid fa-xmark"></i>
+            Annuler
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

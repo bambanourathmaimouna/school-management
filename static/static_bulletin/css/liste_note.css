@@ -1,0 +1,117 @@
+body {
+    background-color: aliceblue;
+    font-family: Arial, sans-serif;
+}
+
+/* Barre en haut avec recherche et bouton ajouter */
+.barre-outils {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px;
+}
+
+.recherche input {
+    width: 250px;
+    height: 40px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.recherche button {
+    padding: 10px 15px;
+    background-color: rgb(33, 33, 230);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+.recherche button:hover {
+    background-color: rgb(25, 25, 180);
+}
+
+.bouton-ajouter {
+    text-decoration: none;
+    background-color: rgb(33, 33, 230);
+    color: white;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 16px;
+}
+
+.bouton-ajouter:hover {
+    background-color: rgb(25, 25, 180);
+}
+
+.bouton-ajouter i {
+    margin-right: 6px;
+}
+
+/* Tableau */
+.tableau-etudiants {
+    border-collapse: collapse;
+    width: 90%;
+    margin: 20px auto;
+}
+
+.tableau-etudiants, 
+.tableau-etudiants th, 
+.tableau-etudiants td {
+    border: 1px solid black;
+}
+
+.tableau-etudiants th,
+.tableau-etudiants td {
+    padding: 8px;
+    text-align: left;
+}
+
+.tableau-etudiants th {
+    font-size: 18px;
+    color: rgb(12, 12, 178);
+    background-color: #e6ecfa;
+}
+
+.tableau-etudiants td {
+    font-size: 16px;
+    color: rgb(5, 5, 63);
+}
+
+/* Icônes modifier / supprimer */
+.icone-modifier,
+.icone-supprimer {
+    display: flex;
+    justify-content: center;
+}
+
+.supprimer  {
+    color: rgb(5, 25, 128);
+    font-size: 16px;
+}
+
+.supprimer :hover {
+    color: rgb(206, 20, 20);
+}
+
+
+
+.lien {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.lien:hover {
+    text-decoration: underline;
+    color: #3661be; 
+}
+
+
+
+
+
+

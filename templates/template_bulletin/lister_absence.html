@@ -1,0 +1,123 @@
+{% extends "template_profil/base1.html" %}
+{% load static %}
+
+{% block header %}
+
+<link rel="stylesheet"
+      href="{% static 'static_bulletin/css/liste_note.css' %}">
+
+<h1>ABSENCES</h1>
+
+{% endblock %}
+
+
+{% block css %}
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+
+
+<div class="barre-outils">
+
+    <form class="recherche">
+        <input type="search"name="q"placeholder="Rechercher un étudiant...">
+        <button type="submit">Rechercher</button>
+    </form>
+
+</div>
+
+<table class="tableau-etudiants">
+
+    <thead>
+        <tr>
+            <th>N°</th>
+            <th>NOM</th>
+            <th>PRÉNOM</th>
+            {% for i in range_absences %}
+                <th>
+                    ABSENCE {{ forloop.counter }}
+                </th>
+
+            {% endfor %}
+        </tr>
+    </thead>
+
+    <tbody>
+
+        
+        {% for etudiant in etudiants %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ etudiant.id }}</td>
+            <td> {{ etudiant.nom }}</td>
+            <td>{{ etudiant.prenom }}</td>
+            {% for absence in etudiant.absences_professeur %}
+
+            <td>
+
+                {% if absence %}
+
+                    <a href="{% url 'modifier_absence' absence.id %}"class="lien"title="Cliquer pour modifier" >
+                        <strong>{{ absence.date|date:"d/m/Y" }}</strong><br>
+                        <small> {{ absence.motif }}</small><br><small>
+
+                            {% if absence.justification %}Justifiée{% else %}Non justifiée {% endif %}</small></a>
+
+
+                    <a href="{% url 'supprimer_absence' absence.id %}"class="supprimer"title="Supprimer">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+
+            {% endfor %}
+
+
+        </tr>
+
+        {% empty %}
+        <tr>
+            <td colspan="8">Aucun étudiant trouvé.</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

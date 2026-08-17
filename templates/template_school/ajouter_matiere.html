@@ -1,0 +1,43 @@
+{% extends "template_profil/base.html" %}
+{% load static %}
+{% block header %}<h1>Ajouter une matière</h1>{% endblock %}
+{% block content %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'static_profil/css/ajouter_etudiant.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+{% endblock %}
+
+
+    <div class="tout">
+        <h2 class="titre"><i class="fa-solid fa-user-graduate"></i> Informations </h2>
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">
+                        <i class="fa-solid fa-circle-check"></i> {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="POST" class="formulaire">
+            {% csrf_token %}
+            {{ forms.as_p }}
+            <button type="submit" class="bouton">
+                <i class="fa-solid fa-floppy-disk"></i> Enregistrer la matière
+            </button>
+        </form>
+    </div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+

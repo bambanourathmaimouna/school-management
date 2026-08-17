@@ -1,0 +1,33 @@
+{% extends "template_profil/base1.html" %}
+{% load static %}
+{% block header %}<h1>Supprimer une note</h1>{% endblock %}
+{% block content %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'static_profil/css/ajouter_etudiant.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+{% endblock %}
+
+<div class="tout">
+    <h2 class="titre"><i class="fa-solid fa-triangle-exclamation"></i> Confirmation</h2>
+
+    <p>
+        Voulez-vous vraiment supprimer la note
+        <strong>{{ note.note }}</strong>
+        de <strong>{{ note.etudiant.nom }} {{ note.etudiant.prenom }}</strong>
+        en <strong>{{ note.matiere }}</strong>
+        ({{ note.date_ajout|date:"d/m/Y" }}) ?
+    </p>
+
+    <form method="post" class="formulaire">
+        {% csrf_token %}
+        <button type="submit" class="bouton bouton-supprimer">
+            <i class="fa-solid fa-trash"></i> Confirmer la suppression
+        </button>
+        <a href="{% url 'lister_note' %}" class="bouton bouton-annuler">
+            <i class="fa-solid fa-xmark"></i> Annuler
+        </a>
+    </form>
+</div>
+
+{% endblock %}

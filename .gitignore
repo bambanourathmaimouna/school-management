@@ -1,0 +1,16 @@
+# Ignorer un dossier entier
+/dossier_a_ignorer/
+node_modules/
+venv/
+ecole/
+# Ignorer tous les fichiers ayant une extension spécifique
+*.log
+*.env
+*.pyc
+
+# Ignorer un fichier spécifique
+config.json
+db.sqlite3
+
+# Ne pas ignorer un fichier spécifique dans un dossier ignoré
+!dossier_a_ignorer/fichie_important.txt

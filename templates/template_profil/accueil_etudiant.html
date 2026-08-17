@@ -1,0 +1,39 @@
+{% extends 'template_profil/base.html' %}
+{% load static %}
+{% block content %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'static_profil/css/accueil_etudiant.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+{% endblock %}
+     {% for etudiant in etudiant %}
+      <header><h2>Bienvenue {{etudiant.nom}} </h2></header>
+      {% endfor %}
+
+    <div class="tout">
+        <div class="all">
+            <ul>
+                <li>
+                    <a href="">
+                        <i class="fa-solid fa-book-open" style="color: white;"></i>
+                        Voir mes notes
+                    </a>
+                </li>
+
+                <li>
+                    <a href="">
+                        <i class="fa-solid fa-circle-minus" style="color: white;"></i>
+                        Voir mes absence
+                    </a>
+                </li>
+                <li>
+                <a href="{% url 'deconnexion' %}">
+                    <i class="fa-solid fa-right-from-bracket" style="color: white;"></i>      
+                    Deconnexion
+                </a>
+            </li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

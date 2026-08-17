@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'static_profil/css/accueil_admin.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+<body>
+    <div class="tout">
+        <div class="actions">
+            <div class="logo">
+               <img src="{% static 'static_profil/images/ChatGPT Image 29 juil. 2026, 14_53_38.png' %}" alt="Logo Admin">
+            </div>
+            <ul>
+            <li>
+                <a href="{% url 'liste_etudiant' %}">
+                    <i class="fa-solid fa-user-graduate" style="color: white;"></i>
+                    Gestion des etudiants
+                </a>
+            </li>
+            
+            <li>
+                <a href="{% url 'liste_professeur' %}">
+                    <i class="fa-solid fa-user-group" style="color: white;"></i>
+                    Gestion des professeurs
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'liste_utilisateur' %}">
+                    <i class="fa-solid fa-users" style="color: white;"></i>
+                    Gestion des utilisateur
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'lister_classe' %}">
+                    <i class="fa-solid fa-school-circle-check" style="color: white;"></i>
+                    Gestion des classes
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'lister_matiere' %}">
+                    <i class="fa-solid fa-book-open-reader" style="color: white;"></i>
+                    Gérer les matières
+                </a>
+            </li>
+
+            <li>
+                <a href="">
+                    <i class="fa-solid fa-graduation-cap" style="color: white;"></i>       
+                    Statistiques
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'deconnexion' %}">
+                    <i class="fa-solid fa-right-from-bracket" style="color: white;"></i>      
+                    Deconnexion
+                </a>
+            </li>
+
+            </ul>
+
+        </div>
+
+        <div class="all">
+
+            <div class="titre">
+                <h1> TABLEAU DE BORD </h1>
+            </div>
+
+            <div class="Statistiques">
+                <div class="la">
+                    <i class="fa-solid fa-user-graduate" style="color: rgb(25, 49, 156);"></i>
+                    <div class="le">
+                        <h1>{{ nbr_etudiant }}</h1>
+                        <h4>Étudiants</h4>
+                    </div>
+                </div>
+                <div class="la">
+                    <i class="fa-solid fa-chalkboard-user" style="color: rgb(14, 118, 17);"></i>
+                    <div class="le">
+                        <h1>{{ nbr_proffeseur }}</h1>
+                        <h4>Professeurs</h4>
+                    </div>
+                </div>
+                <div class="la">
+                    <i class="fa-solid fa-users" style="color: rgb(205, 116, 15);"></i>
+                    <div class="le">
+                        <h1>{{ nbr_utilisateur }}</h1>
+                        <h4>Utilisateurs</h4>
+                    </div>
+                </div>
+                <div class="la">
+                    <i class="fa-solid fa-school-circle-check" style="color:rgb(100, 11, 189);"></i>
+                    <div class="le">
+                        <h1>{{ nbr_classe }}</h1>
+                        <h4>Classes</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="Statistiques">
+                <div class="la">
+                    <i class="fa-solid fa-book" style="color: rgba(9, 206, 144, 0.856);"></i>
+                    <div class="le">
+                        <h1>{{ nbr_matiere }}</h1>
+                        <h4>Matières</h4>
+                    </div>
+                    
+                </div>
+                <div class="la">
+                    <i class="fa-solid fa-circle-minus" style="color: rgb(184, 28, 17);"></i>
+                    <div class="le">
+                        <h1>{{nbr_absence}}</h1>
+                        <h4>Absences</h4>
+                    </div>
+                </div>
+                <div class="la">
+                    <i class="fa-solid fa-calendar" style="color: rgb(19, 172, 174);"></i>
+                    <div class="le">
+                        <h1>{{ annee_scolaire }}</h1>
+                        <h4>Année-scolaire</h4>
+                    </div>
+                </div>
+                <div class="la">
+                    <i class="fa-solid fa-book-open" style="color: rgb(224, 224, 35);"></i>
+                    <div class="le">
+                        <h1>{{ nbr_note }}</h1>
+                        <h4>Notes</h4>
+                    </div>
+                </div>
+            </div>
+        <div class="recent">
+
+        <div class="barre-actions">
+
+        <h3>ACTIONS RAPIDES</h3>
+
+        <div class="actions-rapides">
+
+            <a href="{% url 'ajouter_etudiant' %}" class="action-rapide">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Ajouter un étudiant</span>
+            </a>
+
+            <a href="{% url 'ajouter_professeur' %}" class="action-rapide">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>Ajouter un professeur</span>
+            </a>
+
+            <a href="{% url 'ajouter_matiere' %}" class="action-rapide">
+                <i class="fa-solid fa-book"></i>
+                <span>Ajouter une matière</span>
+            </a>
+
+            <a href="{% url 'ajouter_classe' %}" class="action-rapide">
+                <i class="fa-solid fa-school"></i>
+                <span>Ajouter une classe</span>
+            </a>
+
+        </div>
+
+</div>
+</body>
+</html>
+

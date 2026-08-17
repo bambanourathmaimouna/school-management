@@ -1,0 +1,92 @@
+
+{% extends "template_profil/base.html" %}
+{% load static %}
+{% block header %}<h1>Liste des utilisateurs</h1>{% endblock %}
+{% block content %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'static_profil/css/liste_etudiant.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+{% endblock %}
+
+<div class="barre-outils">
+    <form class="recherche">
+        <label for="recherche-etudiant"></label>
+        <input type="search" name="q" id="recherche-etudiant" placeholder="Rechercher un utilisateur...">
+        <button type="submit">Rechercher</button>
+    </form>
+</div>
+
+<table class="tableau-etudiants">
+    <thead>
+        <tr>
+            <th>N°</th>
+            <th>NOM D'UTILISATEUR</th>
+            <th>NOM</th>
+            <th>PRENOM</th>
+            <th>EMAIL</th>
+            <th>ROLE</th>
+            <th>MODIFIER</th>
+            <th>SUPPRIMER</th>
+            </tr>
+    </thead>
+
+    <tbody>
+        {% for utilisateurs in utilisateurs %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td> {{utilisateurs.username}} </td>
+            <td> {{utilisateurs.first_name}} </td>
+            <td> {{utilisateurs.last_name}} </td>
+            <td> {{utilisateurs.email}} </td>
+            <td> {{utilisateurs.role}} </td>
+            <td>
+                <a href="{% url 'modifier_utilisateur' utilisateurs.id %}" class="icone-modifier">
+                    <i class="fa-solid fa-pen-to-square" ></i>
+                </a>
+            </td>
+            <td>
+                <a href="{% url 'supprimer_utilisateur' utilisateurs.id %}" class="icone-supprimer">
+                    <i class="fa-solid fa-trash-can"></i>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="8">Aucun étudiant trouvé.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

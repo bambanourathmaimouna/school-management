@@ -1,0 +1,123 @@
+{% extends 'template_profil/base.html' %}
+
+{% block content %}
+     <h1>🎓 MY SCHOOL MANAGEMENT</h1>
+
+     <h2>Bienvenue Administrateur</h2>
+
+
+    <ul>
+
+        <li><a href="">Gérer les étudiants</a></li>
+
+        <li><a href="">Gérer les professeurs</a></li>
+
+        <li><a href="">Gérer les matières</a></li>
+
+        <li><a href="">Gérer les notes</a></li>
+
+        <li><a href="">Gérer les absences</a></li>
+
+        <li><a href="">Statistiques</a></li>
+
+        <li><a href="">Déconnexion</a></li>
+
+    </ul>
+
+    {% endblock %}
+
+
+
+
+
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un étudiant</title>
+
+    <link rel="stylesheet" href="{% static 'profil/css/style.css' %}">
+</head>
+
+<body>
+
+<header><h1>Ajouter un étudiant</h1></header>
+
+<form method="POST">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">
+        Enregistrer
+    </button>
+</form>
+
+{% block contenu %}
+
+{% endblock %}
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un étudiant</title>
+
+    <link rel="stylesheet" href="{% static 'profil/css/style.css' %}">
+</head>
+
+<body>
+
+<header><h1>Ajouter un étudiant</h1></header>
+
+<form method="POST">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">
+        Enregistrer
+    </button>
+</form>
+
+</body>
+</html>
+
+
+
+[1] Ajouter une note
+[2] Modifier une note
+[3] Lister les notes
+[4] Lister mes étudiants
+[5] Rechercher un etudiant
+[6] Enregistrer une absence
+[7] lister une absence
+[8] supprimer_notes_etudiant
+
+[0] Déconnexion
+
+
+Votre choix : 
+
+
+
+
+ <img src="{% static 'static_profil/images/ChatGPT Image 29 juil. 2026, 14_53_38.png' %}" alt="Logo Admin">

@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tableau de bord professeur</title>
+
+    <link rel="stylesheet"
+          href="{% static 'static_profil/css/accueil_professeur.css' %}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+
+<body>
+
+<div class="tout">
+
+    <!-- MENU -->
+    <div class="actions">
+
+        <ul>
+
+            <li>
+                <a href="{% url 'lister_etudiant_prof' %}">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    Mes étudiants
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'lister_note' %}">
+                    <i class="fa-solid fa-book-open"></i>
+                    Gestion des notes
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'lister_absence' %}">
+                    <i class="fa-solid fa-circle-minus"></i>
+                    Gestion des absences
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'deconnexion' %}">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Déconnexion
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- CONTENU -->
+    <div class="all">
+
+        <!-- TITRE -->
+        <div class="titre">
+            <h1>TABLEAU DE BORD</h1>
+        </div>
+
+
+        <!-- STATISTIQUES -->
+        <div class="Statistiques">
+
+            <!-- ETUDIANTS -->
+            <div class="la">
+
+                <i class="fa-solid fa-user-graduate"
+                   style="color: rgb(25, 49, 156);">
+                </i>
+
+                <div class="le">
+                    <h1>{{ nbr_etudiant }}</h1>
+                    <h4>Mes étudiants</h4>
+                </div>
+
+            </div>
+
+
+            <!-- NOTES -->
+            <div class="la">
+
+                <i class="fa-solid fa-book-open"
+                   style="color: rgb(82, 2, 128);">
+                </i>
+
+                <div class="le">
+                    <h1>{{ nbr_note }}</h1>
+                    <h4>Notes</h4>
+                </div>
+
+            </div>
+
+
+            <!-- ABSENCES -->
+            <div class="la">
+
+                <i class="fa-solid fa-circle-minus"
+                   style="color: rgb(184, 28, 17);">
+                </i>
+
+                <div class="le">
+                    <h1>{{ nbr_absence }}</h1>
+                    <h4>Absences</h4>
+                </div>
+
+            </div>
+
+
+            <!-- ANNEE SCOLAIRE -->
+            <div class="la">
+
+                <i class="fa-solid fa-calendar"
+                   style="color: rgb(5, 106, 108);">
+                </i>
+
+                <div class="le">
+                    <h1>{{ annee_scolaire }}</h1>
+                    <h4>Année scolaire</h4>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- LISTE DES ETUDIANTS -->
+        <div class="liste-etudiants">
+            <div class="titre-liste">
+                <div>
+                    <h2>
+                        <i class="fa-solid fa-user-graduate"></i>
+                        Mes étudiants
+                    </h2>
+                </div>
+            </div>
+
+
+            {% if etudiants %}
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>Matricule</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Classe</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for etudiant in etudiants %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ etudiant.matricule }}</td>
+                                <td>{{ etudiant.nom }}</td>
+                                <td>{{ etudiant.prenom }}</td>
+                                <td> {{ etudiant.classe }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="aucun-etudiant">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    <h3>Aucun étudiant</h3>
+                    <p>
+                        Aucun étudiant ne vous est actuellement affecté.
+                    </p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
