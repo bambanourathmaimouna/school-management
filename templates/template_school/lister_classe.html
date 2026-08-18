@@ -21,9 +21,12 @@
         <button type="submit">Rechercher</button>
     </form>
 
-    <a href="{% url 'ajouter_classe' %}" class="bouton-ajouter">
+    <a href="{% url 'ajouter_classe' %}" class="ajouter">
         <i class="fa-solid fa-plus"></i> Ajouter une classe
     </a>
+    <a href="{% url 'accueil_admin' %}" class="retour"><i class="fa-solid fa-arrow-left"></i>Tableau de bord</a>
+    
+</div>
 
 </div>
 
@@ -43,12 +46,12 @@
             <td>{{ forloop.counter }}</td>
             <td> {{classe.classe}} </td>
             <td>
-                <a href="{% url 'modifier_classe' classe.id %}" class="icone-modifier">
+                <a href="{% url 'modifier_classe' classe.id %}" class="modifier">
                     <i class="fa-solid fa-pen"></i>
                 </a>
             </td>
             <td>
-                <a href="{% url 'supprimer_classe' classe.id %}" class="icone-supprimer">
+                <a href="{% url 'supprimer_classe' classe.id %}" class="supprimer">
                     <i class="fa-solid fa-trash-can"></i>
                 </a>
             </td>

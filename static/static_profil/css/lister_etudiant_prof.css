@@ -1,37 +1,28 @@
 body {
     background-color: aliceblue;
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
 }
+
 .barre-outils {
-    width: 90%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 30px auto;
-    padding: 0;
-
+    margin: 30px;
 }
 
 .recherche {
-    width: 100%;
-    max-width: 500px;
     display: flex;
     align-items: center;
-    gap: 8px;
 }
 
 .recherche input {
     width: 250px;
     height: 40px;
-    margin: 5px;
     padding: 5px 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    outline: none;
     font-size: 14px;
-    background: white;
 }
 
 .recherche input:focus {
@@ -40,21 +31,22 @@ body {
 }
 
 .recherche button {
-    flex-shrink: 0;
-    height: 40px;
-    padding: 0 15px;
+    padding: 10px 15px;
     background-color: rgb(33, 33, 230);
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
+    margin-left: 8px;
     transition: 0.25s ease;
 }
 
 .recherche button:hover {
     background-color: rgb(25, 25, 180);
+    transform: translateY(-1px);
 }
+
 .retour ,.ajouter {
     text-decoration: none;
     color: white;
@@ -67,6 +59,7 @@ body {
 .retour:hover {
     background: rgba(21, 135, 201, 0.911);
 }
+
 .tableau-etudiants {
     width: 95%;
     margin: 35px auto;
@@ -81,20 +74,20 @@ body {
 
 .tableau-etudiants thead {
     background-color: rgb(6, 39, 107);
-    color: white;
+    color: #ffffff;
 }
 
 .tableau-etudiants th {
-    padding: 15px 12px;
+    padding: 16px 14px;
     text-align: center;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
-    white-space: nowrap;
+    letter-spacing: 0.5px;
 }
 
 .tableau-etudiants td {
-    padding: 13px 12px;
+    padding: 14px;
     text-align: center;
     border-bottom: 1px solid #eeeeee;
     color: #333333;
@@ -104,6 +97,7 @@ body {
 .tableau-etudiants tbody tr {
     transition: 0.2s ease;
 }
+
 .tableau-etudiants tbody tr:hover {
     background-color: aliceblue;
 }
@@ -114,13 +108,15 @@ body {
 
 .tableau-etudiants td:first-child {
     font-weight: 700;
+
     color: #4b2e83;
 }
 
 .tableau-etudiants td:nth-child(2),
 .tableau-etudiants td:nth-child(3) {
     font-weight: 600;
-    color: #222;
+
+    color: #222222;
 }
 
 .lien {
@@ -128,25 +124,25 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-width: 50px;
-    padding: 1px 9px;
-    background: #eef2ff;
-    color: rgb(33, 33, 230);
+    min-width: 55px;
+    padding: 6px 10px;
     border-radius: 7px;
+    background-color: #eef2ff;
+    color: rgb(33, 33, 230);
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 700;
     transition: 0.25s ease;
 }
 
 .lien:hover {
-    background: rgb(33, 33, 230);
+    background-color: rgb(33, 33, 230);
     color: white;
     transform: translateY(-2px);
 }
 
 .lien small {
     margin-top: 3px;
-    color: #777;
+    color: #777777;
     font-size: 10px;
     font-weight: normal;
 }
@@ -159,49 +155,64 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
-    margin-left: 4px;
+    width: 38px;
+    height: 38px;
+    margin-left: 5px;
+    border-radius: 8px;
     background: #fdeaea;
     color: #dc3545;
-    border-radius: 8px;
     text-decoration: none;
     transition: 0.25s ease;
 }
 
 .supprimer:hover {
     background: #dc3545;
-    color: white;
+    color: #ffffff;
     transform: translateY(-2px);
+}
+
+.supprimer i {
+    font-size: 16px;
+}
+
+.tableau-etudiants td:has(.lien) {
+    white-space: nowrap;
 }
 
 .tableau-etudiants td[colspan] {
     padding: 30px;
-    color: #777;
+    color: #777777;
     font-size: 16px;
     font-style: italic;
 }
 
+.tableau-etudiants td a{
+    padding: 9px 12px;
+    border-radius: 10px;
+    background-color: rgb(33, 33, 230);
+    color:white;
+    font-size: 14px;
+    text-decoration: none;
+ }
+
 
 /* =========================
-   TABLETTE
+   RESPONSIVE
 ========================= */
 
 @media (max-width: 900px) {
-    .barre-outils {
-        width: 100%;
-    }
-    .recherche {
-        max-width: 100%;
-    }
+
     .tableau-etudiants {
         width: 100%;
+
+        font-size: 13px;
     }
+
     .tableau-etudiants th,
     .tableau-etudiants td {
-        padding: 10px 8px;
-        font-size: 12px;
+        padding: 10px 7px;
     }
+
 }
 
 
@@ -212,11 +223,11 @@ body {
 @media (max-width: 650px) {
 
     .barre-outils {
-        margin: 20px 0;
+        margin: 20px 10px;
     }
 
     .recherche {
-        max-width: 100%;
+        width: 100%;
     }
 
     .recherche input {
@@ -224,15 +235,15 @@ body {
     }
 
     .recherche button {
-        padding: 0 12px;
-        font-size: 13px;
+        padding: 10px;
     }
 
     .tableau-etudiants {
         display: block;
-        width: 100%;
-        max-width: 100%;
+
         overflow-x: auto;
+
         white-space: nowrap;
     }
+
 }

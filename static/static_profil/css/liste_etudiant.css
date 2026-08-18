@@ -3,7 +3,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* Barre en haut avec recherche et bouton ajouter */
 .barre-outils {
     display: flex;
     justify-content: space-between;
@@ -11,72 +10,88 @@ body {
     margin: 30px;
 }
 
+.recherche {
+    display: flex;
+    align-items: center;
+}
+
 .recherche input {
     width: 250px;
+
     height: 40px;
+
     padding: 5px 10px;
+
     border: 1px solid #ccc;
+
     border-radius: 5px;
+
+    outline: none;
+
+    font-size: 14px;
+}
+
+.recherche input:focus {
+    border-color: rgb(33, 33, 230);
+
+    box-shadow: 0 0 4px rgba(33, 33, 230, 0.25);
 }
 
 .recherche button {
     padding: 10px 15px;
+
     background-color: rgb(33, 33, 230);
+
     color: white;
+
     border: none;
+
     border-radius: 5px;
+
     font-size: 16px;
+
     cursor: pointer;
+
     margin-left: 8px;
+
+    transition: 0.25s ease;
 }
 
 .recherche button:hover {
     background-color: rgb(25, 25, 180);
+    transform: translateY(-1px);
 }
 
-.bouton-ajouter {
+.retour ,.ajouter {
     text-decoration: none;
-    background-color: rgb(33, 33, 230);
     color: white;
-    border-radius: 8px;
-    padding: 12px 20px;
-    font-size: 16px;
+    background: rgb(25, 25, 180);
+    padding: 11px 17px;
+    border-radius: 9px;
+    transition: 0.3s;
 }
 
-.bouton-ajouter:hover {
-    background-color: rgb(25, 25, 180);
+.retour:hover {
+    background: rgba(21, 135, 201, 0.911);
 }
 
-.bouton-ajouter i {
-    margin-right: 6px;
-}
-
-/* Tableau */
 .tableau-etudiants {
     width: 95%;
     margin: 35px auto;
-
     border-collapse: separate;
     border-spacing: 0;
-
     background: #ffffff;
-
     border-radius: 12px;
     overflow: hidden;
-
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
-
+    box-shadow:0 8px 25px rgba(0, 0, 0, 0.10);
     font-family: Arial, sans-serif;
 }
 
-
-/* EN-TÊTE */
-
 .tableau-etudiants thead {
     background-color: rgb(6, 39, 107);
+
     color: #ffffff;
 }
-
 
 .tableau-etudiants th {
     padding: 16px 14px;
@@ -84,15 +99,13 @@ body {
     text-align: center;
 
     font-size: 14px;
+
     font-weight: 700;
 
     text-transform: uppercase;
 
     letter-spacing: 0.5px;
 }
-
-
-/* CELLULES */
 
 .tableau-etudiants td {
     padding: 14px;
@@ -106,98 +119,111 @@ body {
     font-size: 14px;
 }
 
-
-/* LIGNES */
-
 .tableau-etudiants tbody tr {
     transition: 0.2s ease;
 }
 
-
 .tableau-etudiants tbody tr:hover {
-    background: aliceblue;
+    background-color: aliceblue;
 }
-
-
-/* DERNIÈRE LIGNE */
 
 .tableau-etudiants tbody tr:last-child td {
     border-bottom: none;
 }
 
-
-/* ID */
-
 .tableau-etudiants td:first-child {
     font-weight: 700;
+
     color: #4b2e83;
 }
 
 
-/* ICÔNE MODIFIER */
+.tableau-etudiants td:nth-child(2),
+.tableau-etudiants td:nth-child(3) {
+    font-weight: 600;
 
-.icone-modifier {
+    color: #222222;
+}
+
+.lien {
     display: inline-flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 8px;
-    background: #eaf8e8;
-    color: #096124;
+    min-width: 55px;
+    padding: 6px 10px;
+    border-radius: 7px;
+    background-color: #eef2ff;
+    color: rgb(33, 33, 230);
     text-decoration: none;
+    font-weight: 700;
     transition: 0.25s ease;
 }
 
-
-.icone-modifier:hover {
-    background: #05780d;
-    color: #ffffff;
-
+.lien:hover {
+    background-color: rgb(33, 33, 230);
+    color: white;
     transform: translateY(-2px);
 }
 
+.lien small {
+    margin-top: 3px;
+    color: #777777;
+    font-size: 10px;
+    font-weight: normal;
+}
 
-/* ICÔNE SUPPRIMER */
+.lien:hover small {
+    color: white;
+}
 
-.icone-supprimer {
+.modifier {
     display: inline-flex;
-
     align-items: center;
     justify-content: center;
-
     width: 38px;
     height: 38px;
-
+    margin-left: 5px;
     border-radius: 8px;
-
-    background: #fdeaea;
-
-    color: #dc3545;
-
+    background: #ecfdea;
+    color: #17b031;
     text-decoration: none;
-
     transition: 0.25s ease;
 }
 
-
-.icone-supprimer:hover {
+.modifier:hover {
     background: #dc3545;
     color: #ffffff;
-
     transform: translateY(-2px);
 }
 
+.supprimer {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    margin-left: 5px;
+    border-radius: 8px;
+    background: #fdeaea;
+    color: #dc3545;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
 
-/* TAILLE DES ICÔNES */
+.supprimer:hover {
+    background: #dc3545;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
 
-.icone-modifier i,
-.icone-supprimer i {
+.supprimer i {
     font-size: 16px;
 }
 
-
-/* MESSAGE AUCUN ÉTUDIANT */
+.tableau-etudiants td:has(.lien) {
+    white-space: nowrap;
+}
 
 .tableau-etudiants td[colspan] {
     padding: 30px;
@@ -208,9 +234,6 @@ body {
 
     font-style: italic;
 }
-
-
-/* RESPONSIVE */
 
 @media (max-width: 900px) {
 
@@ -228,7 +251,27 @@ body {
 }
 
 
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 650px) {
+
+    .barre-outils {
+        margin: 20px 10px;
+    }
+
+    .recherche {
+        width: 100%;
+    }
+
+    .recherche input {
+        width: 100%;
+    }
+
+    .recherche button {
+        padding: 10px;
+    }
 
     .tableau-etudiants {
         display: block;

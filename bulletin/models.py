@@ -16,12 +16,15 @@ class Note(models.Model):
         return self.nom
 
 class Absence(models.Model):
-    etudiant = models.ForeignKey(Etudiant, on_delete=models.CASCADE)
+    etudiant = models.ForeignKey(Etudiant,on_delete=models.CASCADE)
+    matiere = models.ForeignKey(Matiere,on_delete=models.CASCADE,null=True,blank=True)
     date = models.DateField()
     motif = models.CharField(max_length=50)
-    justification = models.BooleanField(default=False,null=True,blank= True)
+    justification = models.BooleanField(default=False,null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.etudiant} - {self.matiere} - {self.date}"
 
     
-    def __str__(self):
-        return f"{self.etudiant} {self.date}"
+   
    

@@ -1,0 +1,121 @@
+{% extends 'template_profil/base.html' %}
+{% load static %}
+
+{% block header %}
+    <h1>Mes absences</h1>
+{% endblock %}
+
+
+{% block css %}
+
+<link rel="stylesheet"
+      href="{% static 'static_bulletin/css/absence.css' %}">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="page">
+    <div class="haut">
+        <div>
+            <h1><i class="fa-solid fa-calendar-xmark"></i> Mes absences</h1>
+            <p>Consultez votre historique d'absences</p>
+        </div>
+        <a href="{% url 'accueil_etudiant' %}" class="retour"><i class="fa-solid fa-arrow-left"></i>Tableau de bord</a>
+    </div>
+    <div class="info">
+        <div class="photo"><i class="fa-solid fa-user-graduate"></i></div>
+        <div>
+            <h2>
+                {{ etudiant.nom }}
+                {{ etudiant.prenom }}
+            </h2>
+            <p>
+                Matricule :
+                <strong>{{ etudiant.matricule }}</strong>
+            </p>
+            <p>
+                Classe :
+                <strong>{{ etudiant.classe }}</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="total">
+        <div class="icone"> <i class="fa-solid fa-circle-minus"></i></div>
+        <div>
+            <p>Total des absences</p>
+            <h2>{{ nombre_absences }} </h2>
+        </div>
+    </div>
+
+    <div class="absences">
+        <div class="titre">
+            <h2>
+                <i class="fa-solid fa-list"></i>
+                Historique des absences
+            </h2>
+            <span>
+                {{ nombre_absences }}
+                absence{{ nombre_absences|pluralize }}
+            </span>
+        </div>
+        {% if absences %}
+        <div class="tableau">
+            <table>
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Date</th>
+                        <th>Matière</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for absence in absences %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <i class="fa-solid fa-calendar"></i>
+                            {{ absence.date|date:"d/m/Y" }}
+                        </td>
+                        <td>
+                            {% if absence.matiere %}
+                                {{ absence.matiere }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if absence.justifiee %}
+                                <span class="justifiee">
+                                    <i class="fa-solid fa-check"></i>
+                                    Justifiée
+                                </span>
+                            {% else %}
+                                <span class="non-justifiee">
+                                    <i class="fa-solid fa-xmark"></i>
+                                    Non justifiée
+                                </span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="vide">
+            <i class="fa-solid fa-circle-check"></i>
+            <h3>Aucune absence</h3>
+            <p> Vous n'avez aucune absence enregistrée.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,39 +1,136 @@
-{% extends 'template_profil/base.html' %}
 {% load static %}
-{% block content %}
 
-{% block css %}
-    <link rel="stylesheet" href="{% static 'static_profil/css/accueil_etudiant.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-{% endblock %}
-     {% for etudiant in etudiant %}
-      <header><h2>Bienvenue {{etudiant.nom}} </h2></header>
-      {% endfor %}
+<!DOCTYPE html>
+<html lang="fr">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord Étudiant</title>
+    <link rel="stylesheet"href="{% static 'static_profil/css/accueil_etudiant.css' %}">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
     <div class="tout">
-        <div class="all">
-            <ul>
-                <li>
-                    <a href="">
-                        <i class="fa-solid fa-book-open" style="color: white;"></i>
-                        Voir mes notes
-                    </a>
-                </li>
-
-                <li>
-                    <a href="">
-                        <i class="fa-solid fa-circle-minus" style="color: white;"></i>
-                        Voir mes absence
-                    </a>
-                </li>
-                <li>
-                <a href="{% url 'deconnexion' %}">
-                    <i class="fa-solid fa-right-from-bracket" style="color: white;"></i>      
-                    Deconnexion
+        <div class="actions">
+        <ul>
+            <li>
+                <a href="{% url 'lister_note_etudiant' %}">
+                    <i class="fa-solid fa-book-open"></i>
+                    Notes
                 </a>
             </li>
-            </ul>
+
+            <li>
+                <a href="{% url 'mes_absences' %}">
+                    <i class="fa-solid fa-circle-minus"></i>
+                    Absences
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-file-lines"></i>
+                    Bulletin
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Résultats
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'deconnexion' %}">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Déconnexion
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+    <div class="all">
+        <div class="titre">
+            <div>
+                <h1>Tableau de bord étudiant</h1>
+                <p>Bienvenue dans votre espace étudiant</p>
+            </div>
+        </div>
+        <div class="profil">
+            <div class="info">
+                <i class="fa-solid fa-user-graduate"></i>
+            </div>
+            <div>
+                <h2>
+                    Bienvenue {{ request.user.first_name }}
+                    {{ request.user.last_name }}
+                </h2>
+                <p>
+                    Consultez vos notes, absences et résultats.
+                </p>
+            </div>
+        </div>
+
+        <div class="Statistiques">
+            <div class="la">
+                <i class="fa-solid fa-book"></i>
+                <div class="le">
+                    <h1>{{ nbr_note }}</h1>
+                    <h4>Notes</h4>
+                </div>
+            </div>
+            <div class="la">
+                <i class="fa-solid fa-star"></i>
+                <div class="le">
+                    <h1>{{ moyenne_generale }}/20</h1>
+                    <h4>Moyenne</h4>
+                </div>
+            </div>
+            <div class="la">
+                <i class="fa-solid fa-circle-minus"></i>
+                <div class="le">
+                    <h1>{{ nbr_absence }}</h1>
+                    <h4>Absences</h4>
+                </div>
+            </div>
+            <div class="la">
+                <i class="fa-solid fa-calendar"></i>
+                <div class="le">
+                    <h1>{{ annee_scolaire }}</h1>
+                    <h4>Année scolaire</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="recent">
+            <div class="barre-actions">
+                <h3>Actions rapides</h3>
+                <div class="actions-rapides">
+                    <a href="{% url 'lister_note_etudiant' %}"
+                       class="action-rapide">
+                        <i class="fa-solid fa-book-open"></i>
+                        <span>Mes notes</span>
+                    </a>
+
+                    <a href="{% url 'mes_absences' %}"
+                       class="action-rapide">
+                        <i class="fa-solid fa-circle-minus"></i>
+                        <span> Mes absences</span>
+                    </a>
+
+                    <a href=""
+                       class="action-rapide">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <span>Mon bulletin</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
+    </div>
+</body>
 
-{% endblock %}
+</html>

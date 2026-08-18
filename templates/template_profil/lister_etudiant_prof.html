@@ -1,9 +1,9 @@
-{% extends 'template_profil/base1.html' %} {% load static %} {% block header %}
+{% extends 'template_profil/base.html' %} {% load static %} {% block header %}
 <h1>Liste des étudiants</h1>
 {% endblock %} {% block content %} {% block css %}
 <link
   rel="stylesheet"
-  href="{% static 'static_profil/css/liste_etudiant.css' %}"
+  href="{% static 'static_profil/css/lister_etudiant_prof.css' %}"
 />
 <link
   rel="stylesheet"
@@ -12,16 +12,14 @@
 {% endblock %}
 
 <div class="barre-outils">
+
   <form class="recherche">
     <label for="recherche-etudiant"></label>
-    <input
-      type="search"
-      name="q"
-      id="recherche-etudiant"
-      placeholder="Rechercher un professeur..."
-    />
+    <input type="search" name="q" id="recherche-etudiant" placeholder="Rechercher un professeur..."/>
     <button type="submit">Rechercher</button>
   </form>
+  <a href="{% url 'accueil_professeur' %}" class="retour"><i class="fa-solid fa-arrow-left"></i>Tableau de bord</a>
+</div>
 </div>
 
 <table class="tableau-etudiants">

@@ -121,18 +121,42 @@ def accueil_admin(request):
 def accueil_professeur(request):
     professeur = request.user.professeur
     etudiants = Etudiant.objects.filter(classe=professeur.classe)
+    nbr_etudiant = etudiants.count()
+    nbr_note = Note.objects.filter(etudiant__in=etudiants).count()
+    nbr_absence = Absence.objects.filter(etudiant__in=etudiants).count()
     context = {
-        "professeur": professeur,
         "etudiants": etudiants,
+        "nbr_etudiant": nbr_etudiant,
+        "nbr_note": nbr_note,
+        "nbr_absence": nbr_absence,
     }
-
     return render(request,"template_profil/accueil_professeur.html",context)
 
 
 def accueil_etudiant(request):
-    return render (request,"template_profil/accueil_etudiant.html")
+    etudiant = get_object_or_404(Etudiant,user_name=request.user)
+    notes = Note.objects.filter(etudiant=etudiant).order_by("-id")
+    absences = Absence.objects.filter(etudiant=etudiant)
+    nbr_note = notes.count()
+    nbr_absence = absences.count()
+    if nbr_note > 0:
+        moyenne = sum(note.note for note in notes) / nbr_note
+        moyenne_generale = round(moyenne, 2)
+    else:
+        moyenne_generale = 0
+    dernieres_notes = notes[:10]
+    context = {
+        "etudiant": etudiant,
+        "notes": notes,
+        "dernieres_notes": dernieres_notes,
+        "nbr_note": nbr_note,
+        "nbr_absence": nbr_absence,
+        "moyenne_generale": moyenne_generale,
+    }
 
+    return render (request,"template_profil/accueil_etudiant.html",context)
 
+        
 def liste_etudiant(request):
    etudiant = Etudiant.objects.all()
    return render(request,"template_profil/liste_etudiant.html",{'etudiant':etudiant})
@@ -213,12 +237,10 @@ def lister_etudiant_prof(request):
         professeur = request.user.professeur
         classe = professeur.classe
         matiere = professeur.matiere
-
         if classe:
             etudiants = Etudiant.objects.filter(classe=classe)
         else:
             etudiants = Etudiant.objects.none()
-          
     except ObjectDoesNotExist:
         professeur = None
         classe = None
@@ -231,6 +253,4 @@ def lister_etudiant_prof(request):
         'classe': classe,
         'professeur': professeur
     }
-
-    
     return render(request, "template_profil/lister_etudiant_prof.html", context)

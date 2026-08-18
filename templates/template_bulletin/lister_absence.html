@@ -1,4 +1,4 @@
-{% extends "template_profil/base1.html" %}
+{% extends "template_profil/base.html" %}
 {% load static %}
 
 {% block header %}
@@ -23,19 +23,14 @@
 
 {% block content %}
 
-
-
 <div class="barre-outils">
-
     <form class="recherche">
         <input type="search"name="q"placeholder="Rechercher un étudiant...">
         <button type="submit">Rechercher</button>
     </form>
-
+     <a href="{% url 'accueil_professeur' %}" class="retour"><i class="fa-solid fa-arrow-left"></i>Tableau de bord</a>
 </div>
-
 <table class="tableau-etudiants">
-
     <thead>
         <tr>
             <th>N°</th>
@@ -45,7 +40,6 @@
                 <th>
                     ABSENCE {{ forloop.counter }}
                 </th>
-
             {% endfor %}
         </tr>
     </thead>
@@ -56,7 +50,6 @@
         {% for etudiant in etudiants %}
         <tr>
             <td>{{ forloop.counter }}</td>
-            <td>{{ etudiant.id }}</td>
             <td> {{ etudiant.nom }}</td>
             <td>{{ etudiant.prenom }}</td>
             {% for absence in etudiant.absences_professeur %}
@@ -68,10 +61,7 @@
                     <a href="{% url 'modifier_absence' absence.id %}"class="lien"title="Cliquer pour modifier" >
                         <strong>{{ absence.date|date:"d/m/Y" }}</strong><br>
                         <small> {{ absence.motif }}</small><br><small>
-
                             {% if absence.justification %}Justifiée{% else %}Non justifiée {% endif %}</small></a>
-
-
                     <a href="{% url 'supprimer_absence' absence.id %}"class="supprimer"title="Supprimer">
                         <i class="fa-solid fa-trash"></i>
                     </a>

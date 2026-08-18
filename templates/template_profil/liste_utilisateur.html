@@ -15,6 +15,7 @@
         <input type="search" name="q" id="recherche-etudiant" placeholder="Rechercher un utilisateur...">
         <button type="submit">Rechercher</button>
     </form>
+    <a href="{% url 'accueil_admin' %}" class="retour"><i class="fa-solid fa-arrow-left"></i>Tableau de bord</a>
 </div>
 
 <table class="tableau-etudiants">
@@ -41,12 +42,12 @@
             <td> {{utilisateurs.email}} </td>
             <td> {{utilisateurs.role}} </td>
             <td>
-                <a href="{% url 'modifier_utilisateur' utilisateurs.id %}" class="icone-modifier">
+                <a href="{% url 'modifier_utilisateur' utilisateurs.id %}" class="modifier">
                     <i class="fa-solid fa-pen-to-square" ></i>
                 </a>
             </td>
             <td>
-                <a href="{% url 'supprimer_utilisateur' utilisateurs.id %}" class="icone-supprimer">
+                <a href="{% url 'supprimer_utilisateur' utilisateurs.id %}" class="supprimer">
                     <i class="fa-solid fa-trash-can"></i>
                 </a>
             </td>

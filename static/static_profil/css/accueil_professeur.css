@@ -69,10 +69,22 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    transition: 0.3s;
 }
 .la i{
-    font-size: 50px;
-}
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: #deecfd;
+    font-size: 25px;
+ }
+ .la:hover {
+    transform: translateY(-5px);
+   box-shadow:3px 3px 5px #afb1b191;
+ }
 .le{
     display: flex;
     flex-direction: column;
@@ -81,10 +93,6 @@ body {
     color: rgba(40, 40, 232, 0.856);
     font-size: 40px;
 }
-
-
-
-/* LISTE DES ETUDIANTS */
 
 .liste-etudiants {
     width: 80%;

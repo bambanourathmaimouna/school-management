@@ -1,6 +1,8 @@
 {% extends "template_profil/base.html" %}
 {% load static %}
-{% block header %}<h1>Liste des étudiants</h1>{% endblock %}
+{% block header %}
+<h1>Liste des étudiants</h1>
+{% endblock %}
 {% block content %}
 
 {% block css %}
@@ -16,9 +18,11 @@
         <button type="submit">Rechercher</button>
     </form>
 
-    <a href="{% url 'ajouter_etudiant' %}" class="bouton-ajouter">
+    <a href="{% url 'ajouter_etudiant' %}" class="ajouter">
         <i class="fa-solid fa-plus"></i> Ajouter un étudiant
     </a>
+
+    <a href="{% url 'accueil_admin' %}" class="retour"><i class="fa-solid fa-arrow-left"></i>Tableau de bord</a>
 
 </div>
 
@@ -46,12 +50,12 @@
             <td> {{etudiant.matricule}} </td>
             <td> {{etudiant.classe}} </td>
             <td>
-                <a href="{% url 'modifier_etudiant' etudiant.id %}" class="icone-modifier">
+                <a href="{% url 'modifier_etudiant' etudiant.id %}" class="modifier">
                     <i class="fa-solid fa-pen-to-square" ></i>
                 </a>
             </td>
             <td>
-                <a href="{% url 'supprimer_etudiant' etudiant.id %}" class="icone-supprimer">
+                <a href="{% url 'supprimer_etudiant' etudiant.id %}" class="supprimer">
                     <i class="fa-solid fa-trash-can"></i>
                 </a>
             </td>

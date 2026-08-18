@@ -4,8 +4,6 @@ body{
     background-color: aliceblue;
   }
 
-
-
 .confirmation {
     width: 30%;
     margin: 60px auto;
@@ -15,9 +13,6 @@ body{
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     text-align: center;
 }
-
-
-
 
 .confirmation::before {
     content: "⚠";
@@ -33,9 +28,6 @@ body{
     font-size: 35px;
 }
 
-
-/* TITRE */
-
 .confirmation h2 {
     margin-bottom: 25px;
 
@@ -45,22 +37,15 @@ body{
     font-weight: 700;
 }
 
-
-/* INFORMATIONS */
-
 .confirmation p {
     margin: 12px 0;
     color: #666;
     font-size: 15px;
 }
 
-
 .confirmation p strong {
     color: #333;
 }
-
-
-/* FORMULAIRE */
 
 .confirmation form {
     display: flex;
@@ -70,24 +55,15 @@ body{
     margin-top: 30px;
 }
 
-
-/* BOUTON SUPPRIMER */
-
 .confirmation button {
     border: none;
-
     padding: 12px 22px;
-
     background: #8a0916;
     color: white;
-
     border-radius: 8px;
-
     font-size: 15px;
     font-weight: 600;
-
     cursor: pointer;
-
     transition: 0.3s;
 }
 
@@ -97,24 +73,15 @@ body{
     transform: translateY(-2px);
 }
 
-
-/* BOUTON ANNULER */
-
 .confirmation form a {
     display: inline-block;
-
     padding: 12px 22px;
-
     background: #6c757d;
     color: white;
-
     border-radius: 8px;
-
     text-decoration: none;
-
     font-size: 15px;
     font-weight: 600;
-
     transition: 0.3s;
 }
 

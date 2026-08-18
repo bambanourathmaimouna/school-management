@@ -12,16 +12,18 @@
 
 
 <div class="barre-outils">
-
+    
     <form class="recherche">
         <label for="recherche-etudiant"></label>
         <input type="search" name="q" id="recherche-etudiant" placeholder="Rechercher un professeur...">
         <button type="submit">Rechercher</button>
     </form>
 
-    <a href="{% url 'ajouter_professeur' %}" class="bouton-ajouter">
+    <a href="{% url 'ajouter_professeur' %}" class="ajouter">
         <i class="fa-solid fa-plus"></i> Ajouter un professeur
     </a>
+
+     <a href="{% url 'accueil_admin' %}" class="retour"><i class="fa-solid fa-arrow-left"></i>Tableau de bord</a>
 
 </div>
 
@@ -47,12 +49,12 @@
             <td> {{professeur.matiere}} </td>
             <td> {{professeur.classe}} </td>
             <td>
-                <a href="{% url 'modifier_professeur' professeur.id %}" class="icone-modifier">
+                <a href="{% url 'modifier_professeur' professeur.id %}" class="modifier">
                     <i class="fa-solid fa-pen-to-square" ></i>
                 </a>
             </td>
             <td>
-                <a href="{% url 'supprimer_professeur' professeur.id %}" class="icone-supprimer">
+                <a href="{% url 'supprimer_professeur' professeur.id %}" class="supprimer">
                     <i class="fa-solid fa-trash-can"></i>
                 </a>
             </td>

@@ -1,4 +1,4 @@
-{% extends "template_profil/base1.html" %}
+{% extends "template_profil/base.html" %}
 {% load static %}
 
 {% block header %}
@@ -12,12 +12,11 @@
 {% block content %}
 
 <div class="barre-outils">
-
     <form class="recherche">
         <input type="search"name="q"placeholder="Rechercher un étudiant...">
         <button type="submit">Rechercher</button>
     </form>
-
+     <a href="{% url 'accueil_professeur' %}" class="retour"><i class="fa-solid fa-arrow-left"></i>Tableau de bord</a>
 </div>
 
 <table class="tableau-etudiants">

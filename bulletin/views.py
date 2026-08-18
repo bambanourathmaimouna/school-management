@@ -79,6 +79,42 @@ def supprimer_note(request, id):
 
 
 
+def lister_note_etudiant(request):
+    try:
+        etudiant = Etudiant.objects.get(user_name=request.user)
+    except Etudiant.DoesNotExist:
+        return redirect("accueil_etudiant")
+    notes = Note.objects.filter(etudiant=etudiant).select_related("matiere")
+    if notes.exists():
+        moyenne_generale = sum(
+        note.note for note in notes) / notes.count()
+    else:
+        moyenne_generale = 0
+    context = {
+        "etudiant": etudiant,
+        "notes": notes,
+        "moyenne_generale": round(moyenne_generale, 2),
+    }
+
+    return render(request,"template_bulletin/note.html", context)
+
+
+
+def mes_absences(request):
+    try:
+        etudiant = Etudiant.objects.get(user_name=request.user)
+    except Etudiant.DoesNotExist:
+        return redirect("accueil_etudiant")
+    absences = Absence.objects.filter(etudiant=etudiant).order_by("-date")
+    nombre_absences = absences.count()
+    context = {
+        "etudiant": etudiant,
+        "absences": absences,
+        "nombre_absences": nombre_absences,
+    }
+    return render(request,"template_bulletin/absence.html",context)
+
+
 def ajouter_absence(request, id):
     professeur = request.user.professeur
     matiere = professeur.matiere
@@ -87,7 +123,7 @@ def ajouter_absence(request, id):
     if request.method == 'POST':
         form = Absenceform(request.POST, professeur=professeur)
         if form.is_valid():
-            Absence.objects.create(etudiant=etudiant,date=form.cleaned_data['date'],motif=form.cleaned_data['motif'],justification=form.cleaned_data['justification'])
+            Absence.objects.create(etudiant=etudiant,matiere=matiere,date=form.cleaned_data['date'],motif=form.cleaned_data['motif'],justification=form.cleaned_data['justification'])
             return redirect('lister_absence')
     else:
         form = Absenceform(professeur=professeur)
@@ -116,7 +152,7 @@ def lister_absence(request):
     context = {
         'etudiants': etudiants,
         'professeur': professeur,
-        'range_absences': range(max_absences),
+        'range_absences': range(max_absences + 1),
     }
     return render( request,"template_bulletin/lister_absence.html",context)
 
