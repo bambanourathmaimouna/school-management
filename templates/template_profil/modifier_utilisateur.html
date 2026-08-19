@@ -1,6 +1,6 @@
 {% extends "template_profil/base.html" %}
 {% load static %}
-{% block header %}<h1>Ajouter une matière</h1>{% endblock %}
+{% block header %}<h1>Modifier un utilisateur</h1>{% endblock %}
 {% block content %}
 
 {% block css %}
@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 {% endblock %}
 
-
-    <div class="tout">
-        <h2 class="titre"><i class="fa-solid fa-book-open"></i> Informations </h2>
+ <div class="tout">
+        <h2 class="titre"><i class="fa-solid fa-user-graduate"></i> Informations de l'utilisateur </h2>
 
         {% if messages %}
             <div class="messages">
@@ -18,24 +17,21 @@
                     <div class="message {{ message.tags }}">
                         <i class="fa-solid fa-circle-check"></i> {{ message }}
                     </div>
+                    <p> {{password}} </p> 
                 {% endfor %}
             </div>
         {% endif %}
 
         <form method="POST" class="formulaire">
             {% csrf_token %}
-            {{ forms.as_p }}
+            {{ form.as_p }}
             <button type="submit" class="bouton">
-                <i class="fa-solid fa-floppy-disk"></i> Enregistrer la matière
+                <i class="fa-solid fa-floppy-disk"></i> Enregistrer
             </button>
         </form>
     </div>
 
 {% endblock %}
-
-
-
-
 
 
 

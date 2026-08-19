@@ -3,6 +3,7 @@ from .views import *
 from school.views import *
 from bulletin.views import *
 urlpatterns = [
+    
     path('home/',home,name='home'),
     path('', connexion,name='connexion'),
     path('deconnexion/', deconnexion,name='deconnexion'),
@@ -58,5 +59,6 @@ urlpatterns = [
     path("mes_notes/",lister_note_etudiant,name="lister_note_etudiant"),
     path("mes_absences/",mes_absences,name="mes_absences"),
     path("accueil_etudiant/",accueil_etudiant,name="accueil_etudiant"),
+    path("bulletin/",bulletin,name="bulletin"),
     
 ]

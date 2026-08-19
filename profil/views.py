@@ -67,7 +67,7 @@ def ajouter_etudiant(request):
                 with transaction.atomic():
                     user = Utilisateur.objects.create_user(username=email,password=password,first_name=nom,last_name=prenom,email=email,role='etudiant')
                     Etudiant.objects.create(user_name=user,nom=nom,prenom=prenom,age=age,classe=classe,matricule=matricule)
-                messages.success(request,f"L'étudiant {nom} {prenom} a été créé.")
+                messages.success(request,f"L'étudiant {nom} {prenom} a été créé. Mot de passe généré : {password}")
                 return redirect('liste_etudiant')
             except Exception as erreur:
                 messages.error(request, str(erreur))
@@ -206,26 +206,30 @@ def modifier_utilisateur(request, id):
             return redirect('liste_utilisateur')
     else:
         form = Utilisateurform(instance=utilisateurs)
-    return render(request,"template_profil/ajouter_utilisateur.html",{"id": id,"utilisateurs":utilisateurs,"form":form})
-
+    return render(request,"template_profil/modifier_utilisateur.html",{"id": id,"utilisateurs":utilisateurs,"form":form})
 
 
 def supprimer_etudiant(request, id):
-    etudiant =  get_object_or_404(Etudiant,id=id)
-    etudiant.delete()
-    return redirect("liste_etudiant")
+    etudiant = get_object_or_404(Etudiant, id=id)
+    if request.method == "POST":
+        etudiant.delete()
+        return redirect("liste_etudiant")
+    return render(request,"template_profil/supprimer_etudiant.html",{"etudiant": etudiant} )
 
 
 def supprimer_utilisateur(request, id):
-    utilisateurs =  get_object_or_404(Utilisateur,id=id)
-    utilisateurs.delete()
-    return redirect("liste_utilisateur")
+    utilisateur = get_object_or_404(Utilisateur, id=id)
+    if request.method == "POST":
+        utilisateur.delete()
+        return redirect("liste_utilisateur")
+    return render(request,"template_profil/supprimer_utilisateur.html",{"utilisateur": utilisateur})
 
 def supprimer_professeur(request, id):
-    professeur =  get_object_or_404(Professeur,id=id)
-    professeur.delete()
-    return redirect("liste_professeur")
-
+    professeur = get_object_or_404(Professeur, id=id)
+    if request.method == "POST":
+        professeur.delete()
+        return redirect("liste_professeur")
+    return render(request,"template_profil/supprimer_professeur.html",{"professeur": professeur})
 
 
 def home(request):

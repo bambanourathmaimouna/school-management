@@ -1,0 +1,219 @@
+{% extends 'template_profil/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'static_bulletin/css/bulletin.css' %}">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+{% endblock %}
+
+{% block header %}
+<h1>Bulletin scolaire</h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="tout">
+    <a href="{% url 'accueil_etudiant' %}" class="retour"><i class="fa-solid fa-arrow-left"></i>Tableau de bord</a>
+</div>
+
+<div class="la">
+    <div class="le">
+
+        <div>
+            <h1>MY SCHOOL MANAGEMENT</h1>
+            <p>Bulletin scolaire</p>
+        </div>
+
+        <div class="les">
+            Année scolaire :{{annee_scolaire}}
+        </div>
+
+    </div>
+
+
+    <div class="info">
+
+        <div class="photo">
+            <i class="fa-solid fa-user-graduate"></i>
+        </div>
+
+        <div>
+            <h2>
+                {{ etudiant.nom }} {{ etudiant.prenom }}
+            </h2>
+
+            <p>
+                Matricule :
+                <strong>{{ etudiant.matricule }}</strong>
+            </p>
+
+            <p>
+                Classe :
+                <strong>{{ etudiant.classe }}</strong>
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="tableau">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Matière</th>
+                    <th>Note /20</th>
+                    <th>Coefficient</th>
+                    <th>Note * Coef.</th>
+                    <th>Appréciation</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for note in notes %}
+
+                <tr>
+
+                    <td>
+                        {{ forloop.counter }}
+                    </td>
+
+                    <td>
+                        <strong>
+                            {{ note.matiere.matiere }}
+                        </strong>
+                    </td>
+
+                    <td>
+                        {{ note.note|floatformat:2 }}
+                    </td>
+
+                    <td>
+                        {{ note.matiere.coefficient }}
+                    </td>
+
+                    <td>
+                        {% widthratio note.note 1 note.matiere.coefficient %}
+                    </td>
+
+                    <td>
+
+                        {% if note.note >= 16 %}
+                            <span class="excellent">
+                                Excellent
+                            </span>
+
+                        {% elif note.note >= 14 %}
+                            <span class="tres-bien">
+                                Très bien
+                            </span>
+
+                        {% elif note.note >= 12 %}
+                            <span class="bien">
+                                Bien
+                            </span>
+
+                        {% elif note.note >= 10 %}
+                            <span class="passable">
+                                Passable
+                            </span>
+
+                        {% else %}
+                            <span class="faible">
+                                Insuffisant
+                            </span>
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="6">
+                        Aucune note disponible.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="resultat">
+
+        <div class="boite">
+
+            <i class="fa-solid fa-star"></i>
+
+            <div>
+                <span>Moyenne générale</span>
+
+                <strong>
+                    {{ moyenne_generale|floatformat:2 }}/20
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="boite">
+
+            <i class="fa-solid fa-calculator"></i>
+
+            <div>
+                <span>Total coefficients</span>
+
+                <strong>
+                    {{ total_coefficients }}
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="decision">
+
+        {% if moyenne_generale >= 16 %}
+
+            <h2>Excellent travail </h2>
+            <p>Félicitations pour ces très bons résultats.</p>
+
+        {% elif moyenne_generale >= 14 %}
+
+            <h2>Très bon travail</h2>
+            <p>Continuez vos efforts.</p>
+
+        {% elif moyenne_generale >= 12 %}
+
+            <h2>Bon travail</h2>
+            <p>Les résultats sont satisfaisants.</p>
+
+        {% elif moyenne_generale >= 10 %}
+
+            <h2>Résultats satisfaisants</h2>
+            <p>Vous pouvez encore progresser.</p>
+
+        {% else %}
+
+            <h2>Attention</h2>
+            <p>Des efforts supplémentaires sont nécessaires.</p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

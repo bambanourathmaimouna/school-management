@@ -6,7 +6,8 @@ from .models import *
 class Utilisateurform(forms.ModelForm):
     class Meta:
         model = Utilisateur
-        fields = ['username','password','first_name','last_name','email','role',]
+        fields = ['username','first_name','last_name','email','role',]
+        help_texts = {"username": "",}
 
 
 

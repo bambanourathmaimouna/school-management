@@ -1,7 +1,7 @@
 body {
     margin: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.89);
+    background-color: aliceblue;
 }
 .logo{
     width: 60%;
@@ -56,16 +56,6 @@ body {
     color: rgb(13, 69, 182);
     font-size: 27px;
     letter-spacing: 1px;
-}
-
-.titre h1::after {
-    content: "";
-    display: block;
-    width: 55px;
-    height: 4px;
-    background: #6366f1;
-    border-radius: 5px;
-    margin-top: 8px;
 }
 
 .titre p {
@@ -145,7 +135,6 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 14px;
-    background: #deecfd;
     font-size: 25px;
 }
 .la:hover {
@@ -164,9 +153,9 @@ body {
     width: 90%;
     margin: 30px auto;
     padding: 25px;
-    background: white;
+    background: aliceblue;
     border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 3px 3px 5px #888888;
 }
 .barre-actions h3 {
     margin: 0 0 20px 0;

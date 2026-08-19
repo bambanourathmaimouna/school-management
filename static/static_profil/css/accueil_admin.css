@@ -1,7 +1,7 @@
 body {
     margin: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.89);
+    background-color: aliceblue;
 }
 .logo{
     width: 60%;
@@ -51,7 +51,15 @@ body {
 }
 .titre h1{
     color: rgb(13, 69, 182);
+    font-size: 27px;
+    letter-spacing: 1px;
 }
+
+.titre p {
+    color: #383c44;
+    font-size: 14px;
+    margin-top: 8px;
+ }
 .all{
     width: 85%;
     height: 700px;

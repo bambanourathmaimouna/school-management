@@ -14,6 +14,7 @@ class Classe(models.Model):
 
 class Matiere(models.Model):
     matiere = models.CharField(max_length= 100)
+    coefficient = models.PositiveIntegerField(default=1)
     def __str__(self):
         return self.matiere
         

@@ -13,7 +13,7 @@ class Note(models.Model):
     date = models.DateTimeField(auto_now_add=True) 
 
     def __str__(self):
-        return self.nom
+        return f"{self.matiere} - {self.etudiant} - {self.note}"
 
 class Absence(models.Model):
     etudiant = models.ForeignKey(Etudiant,on_delete=models.CASCADE)

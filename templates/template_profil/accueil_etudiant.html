@@ -13,6 +13,9 @@
 <body>
     <div class="tout">
         <div class="actions">
+            <div class="logo">
+               <img src="{% static 'static_profil/images/logo.png' %}" alt="Logo">
+            </div>
         <ul>
             <li>
                 <a href="{% url 'lister_note_etudiant' %}">
@@ -29,16 +32,9 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="{% url 'bulletin' %}">
                     <i class="fa-solid fa-file-lines"></i>
                     Bulletin
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                    <i class="fa-solid fa-chart-line"></i>
-                    Résultats
                 </a>
             </li>
 
@@ -54,10 +50,8 @@
     </div>
     <div class="all">
         <div class="titre">
-            <div>
-                <h1>Tableau de bord étudiant</h1>
+                <h1>TABLEAU DE BORD ÉTUDIANT</h1>
                 <p>Bienvenue dans votre espace étudiant</p>
-            </div>
         </div>
         <div class="profil">
             <div class="info">
@@ -76,28 +70,28 @@
 
         <div class="Statistiques">
             <div class="la">
-                <i class="fa-solid fa-book"></i>
+                <i class="fa-solid fa-book" style="color: rgba(9, 206, 144, 0.856);background-color: rgba(57, 219, 167, 0.209)";></i>
                 <div class="le">
                     <h1>{{ nbr_note }}</h1>
                     <h4>Notes</h4>
                 </div>
             </div>
             <div class="la">
-                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star" style="color: #e0a400;background: #fff4d6;;"></i>
                 <div class="le">
                     <h1>{{ moyenne_generale }}/20</h1>
                     <h4>Moyenne</h4>
                 </div>
             </div>
             <div class="la">
-                <i class="fa-solid fa-circle-minus"></i>
+                <i class="fa-solid fa-circle-minus" style="color: rgb(184, 28, 17);background-color: rgba(233, 74, 63, 0.212);"></i>
                 <div class="le">
                     <h1>{{ nbr_absence }}</h1>
                     <h4>Absences</h4>
                 </div>
             </div>
             <div class="la">
-                <i class="fa-solid fa-calendar"></i>
+                <i class="fa-solid fa-calendar" style="color: rgb(19, 172, 174);background-color: rgba(36, 200, 203, 0.25);"></i>
                 <div class="le">
                     <h1>{{ annee_scolaire }}</h1>
                     <h4>Année scolaire</h4>
@@ -121,7 +115,7 @@
                         <span> Mes absences</span>
                     </a>
 
-                    <a href=""
+                    <a href="{% url 'bulletin' %}"
                        class="action-rapide">
                         <i class="fa-solid fa-file-lines"></i>
                         <span>Mon bulletin</span>

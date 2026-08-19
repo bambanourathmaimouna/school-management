@@ -1,33 +1,64 @@
-{% extends "template_profil/base1.html" %}
+{% extends "template_profil/base.html" %}
 {% load static %}
-{% block header %}<h1>Supprimer une note</h1>{% endblock %}
-{% block content %}
 
-{% block css %}
-    <link rel="stylesheet" href="{% static 'static_profil/css/ajouter_etudiant.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+{% block header %}
+    <h1>SUPPRIMER UNE NOTE</h1>
 {% endblock %}
 
+{% block css %}
+    <link rel="stylesheet"
+          href="{% static 'static_bulletin/css/supprimer_absence.css' %}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+
 <div class="tout">
-    <h2 class="titre"><i class="fa-solid fa-triangle-exclamation"></i> Confirmation</h2>
+
+    <h2 class="titre">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        Confirmation
+    </h2>
 
     <p>
         Voulez-vous vraiment supprimer la note
         <strong>{{ note.note }}</strong>
-        de <strong>{{ note.etudiant.nom }} {{ note.etudiant.prenom }}</strong>
-        en <strong>{{ note.matiere }}</strong>
-        ({{ note.date_ajout|date:"d/m/Y" }}) ?
+        de
+        <strong>
+            {{ note.etudiant.nom }}
+            {{ note.etudiant.prenom }}
+        </strong>
+        ?
     </p>
 
-    <form method="post" class="formulaire">
+    <p>
+        Matière :
+        <strong>{{ note.matiere }}</strong>
+    </p>
+
+    <p>
+        Date :
+        <strong>
+            {{ note.date|date:"d/m/Y" }}
+        </strong>
+    </p>
+    <form method="POST" class="formulaire">
         {% csrf_token %}
-        <button type="submit" class="bouton bouton-supprimer">
-            <i class="fa-solid fa-trash"></i> Confirmer la suppression
+
+        <button type="submit" class="supprimer">
+            <i class="fa-solid fa-trash"></i>
+            Confirmer la suppression
         </button>
-        <a href="{% url 'lister_note' %}" class="bouton bouton-annuler">
-            <i class="fa-solid fa-xmark"></i> Annuler
+
+        <a href="{% url 'lister_note' %}" class="annuler">
+            <i class="fa-solid fa-xmark"></i>
+            Annuler
         </a>
+
     </form>
+
 </div>
 
 {% endblock %}

@@ -1,10 +1,10 @@
-body{
+body {
     display: flex;
     flex-direction: column;
     background-color: aliceblue;
-  }
+}
 
-.confirmation {
+.tout {
     width: 30%;
     margin: 60px auto;
     padding: 35px;
@@ -14,40 +14,30 @@ body{
     text-align: center;
 }
 
-.confirmation::before {
-    content: "⚠";
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 70px;
-    height: 70px;
-    margin: 0 auto 20px;
-    background: #fff1f1;
-    color: #dc3545;
-    border-radius: 50%;
-    font-size: 35px;
-}
-
-.confirmation h2 {
+.titre {
     margin-bottom: 25px;
-
     color: #333;
-
     font-size: 22px;
     font-weight: 700;
 }
 
-.confirmation p {
+.titre i {
+    color: #dc3545;
+    margin-right: 8px;
+}
+
+.tout p {
     margin: 12px 0;
     color: #666;
     font-size: 15px;
+    line-height: 1.6;
 }
 
-.confirmation p strong {
+.tout p strong {
     color: #333;
 }
 
-.confirmation form {
+.formulaire {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,7 +45,8 @@ body{
     margin-top: 30px;
 }
 
-.confirmation button {
+.supprimer {
+    display: inline-block;
     border: none;
     padding: 12px 22px;
     background: #8a0916;
@@ -67,13 +58,12 @@ body{
     transition: 0.3s;
 }
 
-
-.confirmation button:hover {
+.supprimer:hover {
     background: #b02a37;
     transform: translateY(-2px);
 }
 
-.confirmation form a {
+.annuler {
     display: inline-block;
     padding: 12px 22px;
     background: #6c757d;
@@ -85,31 +75,36 @@ body{
     transition: 0.3s;
 }
 
-
-.confirmation form a:hover {
+.annuler:hover {
     background: #495057;
     transform: translateY(-2px);
 }
 
 
-/* RESPONSIVE */
+@media (max-width: 900px) {
+
+    .tout {
+        width: 50%;
+    }
+}
+
 
 @media (max-width: 600px) {
 
-    .confirmation {
+    .tout {
         width: auto;
         margin: 30px 15px;
         padding: 25px 20px;
     }
 
-    .confirmation form {
+    .formulaire {
         flex-direction: column;
     }
 
-    .confirmation button,
-    .confirmation form a {
+    .supprimer,
+    .annuler {
         width: 100%;
+
         box-sizing: border-box;
     }
-
 }

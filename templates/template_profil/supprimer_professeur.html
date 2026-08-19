@@ -2,11 +2,13 @@
 {% load static %}
 
 {% block header %}
-    <h1>SUPPRIMER UNE ABSENCE</h1>
+    <h1>SUPPRIMER UN PROFESSEUR</h1>
 {% endblock %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'static_bulletin/css/supprimer_absence.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'static_bulletin/css/supprimer_absence.css' %}">
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 {% endblock %}
@@ -21,35 +23,25 @@
     </h2>
 
     <p>
-        Voulez-vous vraiment supprimer l'absence de
+        Voulez-vous vraiment supprimer le professeur
         <strong>
-            {{ absence.etudiant.nom }}
-            {{ absence.etudiant.prenom }}
-        </strong>
-        du
-        <strong>
-            {{ absence.date|date:"d/m/Y" }}
+            {{ professeur.nom }}
+            {{ professeur.prenom }}
         </strong>
         ?
     </p>
 
     <p>
-        Motif :
-        <strong>{{ absence.motif }}</strong>
+        Matière :
+        <strong>{{ professeur.matiere }}</strong>
     </p>
 
     <p>
-        Justification :
-        <strong>
-            {% if absence.justification %}
-                Justifiée
-            {% else %}
-                Non justifiée
-            {% endif %}
-        </strong>
+        Classe :
+        <strong>{{ professeur.classe }}</strong>
     </p>
 
-    <form method="post" class="formulaire">
+    <form method="POST" class="formulaire">
 
         {% csrf_token %}
 
@@ -58,8 +50,7 @@
             Confirmer la suppression
         </button>
 
-        <a href="{% url 'lister_absence' %}"
-           class=" annuler">
+        <a href="{% url 'liste_professeur' %}" class="annuler">
             <i class="fa-solid fa-xmark"></i>
             Annuler
         </a>
