@@ -125,8 +125,8 @@ body {
 
 .lien {
     display: inline-flex;
-    flex-direction: column;
     align-items: center;
+    gap: 2px;
     justify-content: center;
     min-width: 50px;
     padding: 1px 9px;
@@ -147,7 +147,7 @@ body {
 .lien small {
     margin-top: 3px;
     color: #777;
-    font-size: 10px;
+    font-size: 8px;
     font-weight: normal;
 }
 

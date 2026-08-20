@@ -130,6 +130,8 @@
                                 <th>Nom</th>
                                 <th>Prénom</th>
                                 <th>Classe</th>
+                                <th>Notes</th>
+                                <th>Absences</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -140,6 +142,8 @@
                                 <td>{{ etudiant.nom }}</td>
                                 <td>{{ etudiant.prenom }}</td>
                                 <td> {{ etudiant.classe }}</td>
+                                <td>{{etudiant.number_note}}</td>
+                                <td>{{etudiant.number_absence}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>

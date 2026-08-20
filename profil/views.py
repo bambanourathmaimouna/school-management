@@ -122,8 +122,12 @@ def accueil_professeur(request):
     professeur = request.user.professeur
     etudiants = Etudiant.objects.filter(classe=professeur.classe)
     nbr_etudiant = etudiants.count()
-    nbr_note = Note.objects.filter(etudiant__in=etudiants).count()
-    nbr_absence = Absence.objects.filter(etudiant__in=etudiants).count()
+    nbr_note = Note.objects.filter(matiere=professeur.matiere,etudiant__classe=professeur.classe).count()
+    nbr_absence = Absence.objects.filter( professeur=professeur).count()
+
+    for etudiant in etudiants:
+        etudiant.number_note = Note.objects.filter(etudiant=etudiant,matiere=professeur.matiere).count()
+        etudiant.number_absence = Absence.objects.filter(etudiant=etudiant,professeur=professeur).count()
     context = {
         "etudiants": etudiants,
         "nbr_etudiant": nbr_etudiant,
@@ -258,3 +262,4 @@ def lister_etudiant_prof(request):
         'professeur': professeur
     }
     return render(request, "template_profil/lister_etudiant_prof.html", context)
+

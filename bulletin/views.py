@@ -89,24 +89,25 @@ def mes_absences(request):
 
 
 def ajouter_absence(request, id):
-    professeur = request.user.professeur
-    matiere = professeur.matiere
-    etudiant = get_object_or_404(Etudiant, id=id, classe=professeur.classe)
-    if request.method == 'POST':
-        form = Absenceform(request.POST, professeur=professeur)
-        if form.is_valid():
-            Absence.objects.create(etudiant=etudiant,matiere=matiere,date=form.cleaned_data['date'],motif=form.cleaned_data['motif'],justification=form.cleaned_data['justification'])
-            return redirect('lister_absence')
-    else:
-        form = Absenceform(professeur=professeur)
-    context = {'form': form,'etudiant': etudiant,}
-    return render(request, "template_bulletin/ajouter_absence.html", context)
+        professeur = request.user.professeur
+        matiere = professeur.matiere
+        etudiant = get_object_or_404( Etudiant,id=id, classe=professeur.classe)
+        if request.method == 'POST':
+            form = Absenceform(request.POST, professeur=professeur)
+            if form.is_valid():
+                Absence.objects.create( etudiant=etudiant, professeur=professeur, matiere=matiere,date=form.cleaned_data['date'], motif=form.cleaned_data['motif'],justification=form.cleaned_data['justification'])
+                messages.success(request,"L'absence a été enregistrée avec succès.")
+                return redirect('lister_absence')
+        else:
+            form = Absenceform(professeur=professeur)
+        context = {'form': form,'etudiant': etudiant,}
+        return render( request, "template_bulletin/ajouter_absence.html", context)
 
 
 def lister_absence(request):
     professeur = request.user.professeur
     etudiants = Etudiant.objects.filter(classe=professeur.classe)
-    absences = Absence.objects.filter(etudiant__classe=professeur.classe).order_by('etudiant_id','id')
+    absences = Absence.objects.filter(professeur=professeur,etudiant__classe=professeur.classe).order_by('etudiant_id','id')
     absences_par_etudiant = {}
     for absence in absences:
         absences_par_etudiant.setdefault(absence.etudiant_id,[]).append(absence)
@@ -115,13 +116,13 @@ def lister_absence(request):
         liste_absences = absences_par_etudiant.get(etudiant.id,[])
         liste_absences = liste_absences + [None] * (max_absences - len(liste_absences))
         etudiant.absences_professeur = liste_absences
-    context = {'etudiants': etudiants, 'professeur': professeur, 'range_absences': range(max_absences + 1),}
+    context = {'etudiants': etudiants, 'professeur': professeur, 'range_absences': range(max_absences),}
     return render( request,"template_bulletin/lister_absence.html",context)
 
 
 def modifier_absence(request, id):
     professeur = request.user.professeur
-    absence = get_object_or_404( Absence,id=id,etudiant__classe=professeur.classe)
+    absence = get_object_or_404( Absence,id=id,professeur=professeur)
     if request.method == 'POST':
         form = Absenceform(request.POST, instance=absence, professeur=professeur)
         if form.is_valid():
@@ -135,7 +136,7 @@ def modifier_absence(request, id):
 
 def supprimer_absence(request, id):
     professeur = request.user.professeur
-    absence = get_object_or_404( Absence,id=id,etudiant__classe=professeur.classe)
+    absence = get_object_or_404( Absence,id=id,professeur=professeur)
     if request.method == 'POST':
         absence.delete()
         messages.success(request,"L'absence a été supprimée avec succès.")
@@ -162,4 +163,21 @@ def bulletin(request):
         moyenne_generale = 0
     context = {"etudiant": etudiant, "notes": notes, "moyenne_generale": round(moyenne_generale, 2), "total_coefficients": total_coefficients,}
     return render(request,"template_bulletin/bulletin.html",context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     

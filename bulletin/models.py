@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator,MaxValueValidator
 from school.models import Matiere
-from profil.models import Etudiant
+from profil.models import *
 
 # Create your models here.
 
@@ -17,6 +17,7 @@ class Note(models.Model):
 
 class Absence(models.Model):
     etudiant = models.ForeignKey(Etudiant,on_delete=models.CASCADE)
+    professeur = models.ForeignKey(Professeur, on_delete=models.CASCADE,null=True,blank=True)
     matiere = models.ForeignKey(Matiere,on_delete=models.CASCADE,null=True,blank=True)
     date = models.DateField()
     motif = models.CharField(max_length=50)
