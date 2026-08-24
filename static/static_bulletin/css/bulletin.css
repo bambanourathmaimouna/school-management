@@ -203,6 +203,9 @@ body {
 .decision h2 {
     color: rgb(6, 39, 107);
 }
+.decision i{
+    font-size: 50px;
+}
 
 @media (max-width: 700px) {
 
