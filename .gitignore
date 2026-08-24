@@ -14,3 +14,15 @@ db.sqlite3
 
 # Ne pas ignorer un fichier spécifique dans un dossier ignoré
 !dossier_a_ignorer/fichie_important.txt
+
+
+
+
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+db.sqlite3
+.env
+staticfiles/
