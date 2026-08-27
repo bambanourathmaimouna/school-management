@@ -19,10 +19,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-hegr#y@9y@4!^!o-fm=%9-jve#)5q)d9-3ltsynbah+#1unm62'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # ---------------------------------------------------------
 # APPLICATIONS
@@ -155,7 +154,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'staticfiles/'
 
 # ---------------------------------------------------------
 # CUSTOM USER MODEL

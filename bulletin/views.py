@@ -1,5 +1,8 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import messages
+from django.db.models import Avg
+from django.db.models import Q
+from school.models import *
 from .forms import *
 from .models import *
 
@@ -22,18 +25,31 @@ def ajouter_note(request,id):
 
 def lister_note(request):
     professeur = request.user.professeur
+    recherche = request.GET.get('q', '').strip()
     etudiants = Etudiant.objects.filter(classe=professeur.classe)
-    notes = Note.objects.filter(etudiant__classe=professeur.classe,matiere=professeur.matiere).order_by('etudiant_id', 'id') 
+    if recherche:
+        etudiants = etudiants.filter(
+            Q(nom__icontains=recherche) |
+            Q(prenom__icontains=recherche) |
+            Q(matricule__icontains=recherche)
+        )
+    notes = Note.objects.filter(etudiant__classe=professeur.classe,matiere=professeur.matiere).order_by('etudiant_id', 'id')
     notes_par_etudiant = {}
     for n in notes:
-        notes_par_etudiant.setdefault(n.etudiant_id, []).append(n)
-    max_notes = max((len(v) for v in notes_par_etudiant.values()), default=0)
+        notes_par_etudiant.setdefault( n.etudiant_id, []).append(n)
+    max_notes = max(
+        (len(v) for v in notes_par_etudiant.values()), default=0 )
     for etudiant in etudiants:
-        liste_notes = notes_par_etudiant.get(etudiant.id, [])
-        liste_notes = liste_notes + [None] * (max_notes - len(liste_notes))
+        liste_notes = notes_par_etudiant.get( etudiant.id, [])
+        liste_notes = liste_notes + [ None ] * (max_notes - len(liste_notes))
         etudiant.notes_professeur = liste_notes
-    context = {'etudiants': etudiants,'professeur': professeur,'range_notes': range(max_notes),}
-    return render(request, "template_bulletin/lister_note.html", context)
+    context = {
+        'etudiants': etudiants,
+        'professeur': professeur,
+        'range_notes': range(max_notes),
+        'recherche': recherche,
+    }
+    return render(request,"template_bulletin/lister_note.html",context)
 
 
 def modifier_note(request, id):
@@ -106,17 +122,29 @@ def ajouter_absence(request, id):
 
 def lister_absence(request):
     professeur = request.user.professeur
+    recherche = request.GET.get('q', '').strip()
     etudiants = Etudiant.objects.filter(classe=professeur.classe)
-    absences = Absence.objects.filter(professeur=professeur,etudiant__classe=professeur.classe).order_by('etudiant_id','id')
+    if recherche:
+        etudiants = etudiants.filter(
+            Q(nom__icontains=recherche) |
+            Q(prenom__icontains=recherche) |
+            Q(matricule__icontains=recherche)
+        )
+    absences = Absence.objects.filter(professeur=professeur,etudiant__classe=professeur.classe).order_by('etudiant_id', 'id')
     absences_par_etudiant = {}
     for absence in absences:
-        absences_par_etudiant.setdefault(absence.etudiant_id,[]).append(absence)
-    max_absences = max((len(v) for v in absences_par_etudiant.values()), default=0)
+        absences_par_etudiant.setdefault(absence.etudiant_id, []).append(absence)
+    max_absences = max((len(v) for v in absences_par_etudiant.values()),default=0 )
     for etudiant in etudiants:
-        liste_absences = absences_par_etudiant.get(etudiant.id,[])
-        liste_absences = liste_absences + [None] * (max_absences - len(liste_absences))
+        liste_absences = absences_par_etudiant.get( etudiant.id, [])
+        liste_absences = liste_absences + [ None ] * (max_absences - len(liste_absences))
         etudiant.absences_professeur = liste_absences
-    context = {'etudiants': etudiants, 'professeur': professeur, 'range_absences': range(max_absences),}
+    context = {
+        'etudiants': etudiants,
+        'professeur': professeur,
+        'range_absences': range(max_absences),
+        'recherche': recherche,
+    }
     return render( request,"template_bulletin/lister_absence.html",context)
 
 
@@ -143,8 +171,6 @@ def supprimer_absence(request, id):
         return redirect('lister_absence')
     return render( request, 'template_bulletin/supprimer_absence.html', { 'absence': absence })
 
-
-
 def bulletin(request):
     try:
         etudiant = Etudiant.objects.get(user_name=request.user)
@@ -164,8 +190,43 @@ def bulletin(request):
     context = {"etudiant": etudiant, "notes": notes, "moyenne_generale": round(moyenne_generale, 2), "total_coefficients": total_coefficients,}
     return render(request,"template_bulletin/bulletin.html",context)
 
+def statistique(request):
+    classes = Classe.objects.all()
+    total_etudiants = Etudiant.objects.count()
+    total_classes = Classe.objects.count()
+    total_notes = Note.objects.count()
+    total_matieres = Matiere.objects.count()
+    moyenne_generale = Note.objects.aggregate(moyenne=Avg('note'))['moyenne']
+    if moyenne_generale is None:
+        moyenne_generale = 0
+    statistiques = []
+    for classe in classes:
+        etudiants = Etudiant.objects.filter(classe=classe)
+        meilleurs_etudiants = (etudiants.annotate(moyenne=Avg('note__note')).order_by('-moyenne')[:5])
+        moyenne_classe = ( Note.objects.filter(etudiant__classe=classe).aggregate(moyenne=Avg('note'))['moyenne'])
+        if moyenne_classe is None:
+            moyenne_classe = 0
+        nombre_etudiants = etudiants.count()
+        etudiants_admis = ( etudiants.annotate(moyenne=Avg('note__note')).filter(moyenne__gte=10) .count())
+        etudiants_non_admis = ( etudiants.annotate(moyenne=Avg('note__note')).filter(moyenne__lt=10).count() )
+        statistiques.append({
+            'classe': classe,
+            'etudiants': meilleurs_etudiants,
+            'moyenne': moyenne_classe,
+            'nombre_etudiants': nombre_etudiants,
+            'etudiants_admis': etudiants_admis,
+            'etudiants_non_admis': etudiants_non_admis,
+        })
+    context = {
+        'statistiques': statistiques,
+        'total_etudiants': total_etudiants,
+        'total_classes': total_classes,
+        'total_notes': total_notes,
+        'total_matieres': total_matieres,
+        'moyenne_generale': moyenne_generale,
+    }
 
-
+    return render( request,"template_bulletin/statistique.html", context)
 
 
 

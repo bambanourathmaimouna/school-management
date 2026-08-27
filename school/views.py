@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login
+from django.db.models import Q
+
 from .forms import *
 from .models import *
 from django.contrib import messages
@@ -20,8 +22,13 @@ def ajouter_classe(request):
 
 
 def lister_classe(request):
-   classe = Classe.objects.all()
-   return render(request,"template_school/lister_classe.html",{'classe':classe})
+    recherche = request.GET.get('q', '').strip()
+    classe = Classe.objects.all()
+    if recherche:
+        classe = classe.filter(
+        Q(classe__icontains=recherche) 
+    )
+    return render(request,"template_school/lister_classe.html",{'classe':classe})
 
 
 def modifier_classe(request, id):
@@ -56,7 +63,12 @@ def ajouter_matiere(request):
 
 
 def lister_matiere(request):
+   recherche = request.GET.get('q', '').strip()
    matiere = Matiere.objects.all()
+   if recherche:
+           matiere = matiere.filter(
+           Q(matiere__icontains=recherche) 
+       )
    return render(request,"template_school/lister_matiere.html",{'matiere':matiere})
 
 

@@ -25,9 +25,17 @@
         <form method="post" class="formulaire">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="bouton">
-                <i class="fa-solid fa-floppy-disk"></i> {% if note %}Modifier{% else %}Enregistrer{% endif %}
-            </button>
+            <div class="option">
+                <button type="submit" class="bouton">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Enregistrer
+                </button>
+
+                <a href="{% url 'lister_note' %}" class="annuler">
+                    <i class="fa-solid fa-xmark"></i>
+                    Annuler
+                </a>
+            </div>
         </form>
     </div>
 

@@ -15,7 +15,7 @@
 
   <form class="recherche">
     <label for="recherche-etudiant"></label>
-    <input type="search" name="q" id="recherche-etudiant" placeholder="Rechercher un professeur..."/>
+    <input type="search" name="q" id="recherche-etudiant" placeholder="Rechercher un étudiant..." value="{{ recherche }}">
     <button type="submit">Rechercher</button>
   </form>
   <a href="{% url 'accueil_professeur' %}" class="retour"><i class="fa-solid fa-arrow-left"></i>Tableau de bord</a>

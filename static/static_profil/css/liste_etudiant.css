@@ -268,33 +268,197 @@ body {
 
 
 /* =========================
+   TABLETTE
+========================= */
+
+@media (max-width: 900px) {
+
+    .barre-outils {
+        margin: 25px 15px;
+        gap: 15px;
+    }
+
+    .recherche input {
+        width: 200px;
+    }
+
+    .tableau-etudiants {
+        width: calc(100% - 30px);
+        font-size: 13px;
+    }
+
+    .tableau-etudiants th,
+    .tableau-etudiants td {
+        padding: 11px 8px;
+    }
+
+    .lien {
+        min-width: 48px;
+        padding: 6px 8px;
+    }
+
+    .modifier,
+    .supprimer {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+
+/* =========================
    MOBILE
 ========================= */
 
 @media (max-width: 650px) {
 
+    body {
+        overflow-x: hidden;
+    }
+
+    /* BARRE D'OUTILS */
+
     .barre-outils {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
         margin: 20px 10px;
     }
 
+    /* RECHERCHE */
+
     .recherche {
+        display: flex;
         width: 100%;
+        gap: 7px;
     }
 
     .recherche input {
         width: 100%;
+        height: 42px;
+        box-sizing: border-box;
     }
 
     .recherche button {
-        padding: 10px;
+        flex-shrink: 0;
+        height: 42px;
+        padding: 10px 13px;
+        margin-left: 0;
     }
+
+    /* BOUTONS */
+
+    .retour,
+    .ajouter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px;
+    }
+
+    /* TABLEAU */
 
     .tableau-etudiants {
         display: block;
-
+        width: calc(100% - 20px);
+        margin: 25px 10px;
         overflow-x: auto;
-
+        overflow-y: hidden;
         white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 10px;
+    }
+
+    .tableau-etudiants table {
+        min-width: 750px;
+    }
+
+    .tableau-etudiants th {
+        padding: 12px 10px;
+        font-size: 12px;
+    }
+
+    .tableau-etudiants td {
+        padding: 11px 10px;
+        font-size: 13px;
+    }
+
+    /* LIENS */
+
+    .lien {
+        min-width: 48px;
+        padding: 6px 8px;
+    }
+
+    .lien small {
+        font-size: 9px;
+    }
+
+    /* BOUTON MODIFIER */
+
+    .modifier {
+        width: 35px;
+        height: 35px;
+        margin-left: 3px;
+    }
+
+    /* BOUTON SUPPRIMER */
+
+    .supprimer {
+        width: 35px;
+        height: 35px;
+        margin-left: 3px;
+    }
+
+}
+
+
+/* =========================
+   PETIT MOBILE
+========================= */
+
+@media (max-width: 440px) {
+    .barre-outils {
+        margin: 15px 8px;
+        display: flex;
+        flex-direction: column;
+    }
+    .recherche {
+        width: 100%;
+    }
+    .recherche input {
+        height: 40px;
+        font-size: 13px;
+        padding: 5px 8px;
+    }
+    .recherche button {
+        height: 40px;
+        padding: 8px 11px;
+        font-size: 14px;
+    }
+    .retour,
+    .ajouter {
+        font-size: 13px;
+        padding: 11px;
+    }
+    .tableau-etudiants {
+        width: calc(100% - 16px);
+        margin: 20px 8px;
+    }
+    .tableau-etudiants th {
+        font-size: 11px;
+        padding: 10px 8px;
+    }
+    .tableau-etudiants td {
+        font-size: 12px;
+        padding: 10px 8px;
+    }
+    .modifier,
+    .supprimer {
+        width: 32px;
+        height: 32px;
     }
 
 }

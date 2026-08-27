@@ -55,10 +55,12 @@ urlpatterns = [
     path('supprimer_absence/<int:id>/', supprimer_absence, name='supprimer_absence'), 
 
 
+
     
     path("mes_notes/",lister_note_etudiant,name="lister_note_etudiant"),
     path("mes_absences/",mes_absences,name="mes_absences"),
     path("accueil_etudiant/",accueil_etudiant,name="accueil_etudiant"),
     path("bulletin/",bulletin,name="bulletin"),
+    path("statistique/",statistique,name="statistique")
     
 ]

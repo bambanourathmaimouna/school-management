@@ -1,0 +1,165 @@
+{% extends "template_profil/base.html" %}
+{% load static %}
+
+{% block header %}
+<h1>Statistiques</h1>
+{% endblock %}
+
+{% block content %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'static_bulletin/css/statistique.css' %}">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+{% endblock %}
+
+
+<div class="tout">
+    <div class="retour">
+            <a href="{% url 'accueil_admin' %}" class="la"><i class="fa-solid fa-arrow-left"></i>Tableau de bord</a>
+     </div>
+    <div class="total">
+        <div class="carte-statistique">
+            <div class="icone">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <div>
+                <span>Total étudiants</span>
+                <strong>{{ total_etudiants }}</strong>
+            </div>
+        </div>
+        <div class="carte-statistique">
+            <div class="icone">
+                <i class="fa-solid fa-chalkboard"></i>
+            </div>
+            <div>
+                <span>Total classes</span>
+                <strong>{{ total_classes }}</strong>
+            </div>
+        </div>
+        <div class="carte-statistique">
+            <div class="icone">
+                <i class="fa-solid fa-book"></i>
+            </div>
+            <div>
+                <span>Total matières</span>
+                <strong>{{ total_matieres }}</strong>
+            </div>
+        </div>
+        <div class="carte-statistique">
+            <div class="icone">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <div>
+                <span>Moyenne générale</span>
+                <strong>{{ moyenne_generale|floatformat:2 }}/20</strong>
+            </div>
+        </div>
+    </div>
+    <div class="titre">
+
+        <i class="fa-solid fa-ranking-star" style="color: rgb(11, 43, 113);"></i>
+
+        <div>
+            <h2>Meilleurs étudiants</h2>
+            <p>Les 5 meilleurs étudiants de chaque classe</p>
+        </div>
+
+    </div>
+    {% for statistique in statistiques %}
+        <div class="tableau">
+            <div class="header">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <h3>{{ statistique.classe.classe }}</h3>
+                <span>Top 5 des étudiants</span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rang</th>
+                        <th>Étudiant</th>
+                        <th>Matricule</th>
+                        <th>Moyenne</th>
+                        <th>Performance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for etudiant in statistique.etudiants %}
+                    <tr>
+                        <td>
+                            {% if forloop.counter == 1 %}
+                            <i class="fa-solid fa-medal medaille-or" style="color: #D4AF37;"></i>
+                            {% elif forloop.counter == 2 %}
+                            <i class="fa-solid fa-medal medaille-argent" style="color: #A7A9AC;"></i>
+                            {% elif forloop.counter == 3 %}
+                            <i class="fa-solid fa-medal medaille-bronze" style="color: #CD7F32"></i>
+                            {% else %}
+                                {{ forloop.counter }}
+                            {% endif %}
+
+                        </td>
+                        <td>
+                            <div class="etudiant">
+                                <div class="avatar">
+                                    {{ etudiant.nom|first|upper }}
+                                </div>
+                                <strong>
+                                    {{ etudiant.nom }}
+                                    {{ etudiant.prenom }}
+                                </strong>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="matricule">
+                                {{ etudiant.matricule }}
+                            </span>
+                        </td>
+                        <td>
+                            <strong class="moyenne">
+                                {{ etudiant.moyenne|floatformat:2 }}
+                            </strong>
+                            <span class="sur">/20</span>
+                        </td>
+                        <td>
+                            {% if etudiant.moyenne >= 16 %}
+                                <span class="performance excellent">
+                                    <i class="fa-solid fa-star" style="color: #D4AF37;"></i>
+                                    Excellent
+                                </span>
+                            {% elif etudiant.moyenne >= 14 %}
+                                <span class="performance tres-bien">
+                                    <i class="fa-solid fa-thumbs-up" style="color: #056a14;"></i>
+                                    Très bien
+                                </span>
+                            {% elif etudiant.moyenne >= 12 %}
+                                <span class="performance bien">
+                                    <i class="fa-solid fa-check"></i>
+                                    Bien
+                                </span>
+                            {% else %}
+                                <span class="performance moyen">
+                                    aucune note
+                                </span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="aucun">
+                            Aucun étudiant avec une note disponible.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% empty %}
+        <div class="aucune">
+            <i class="fa-solid fa-chart-column"></i>
+            <h3>Aucune statistique disponible</h3>
+            <p>Aucune classe n'est disponible pour le moment.</p>
+        </div>
+    {% endfor %}
+
+</div>
+{% endblock %}

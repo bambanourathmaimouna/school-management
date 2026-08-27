@@ -1,24 +1,72 @@
-body {
+/* =========================================
+   RESET
+========================================= */
+
+* {
     margin: 0;
-    background: #f4f7fb;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #1f2937;
+    padding: 0;
+    box-sizing: border-box;
 }
-.tout{
-    width: 95%;
-    height: 100px;
+
+html {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+
+    margin: 0;
+    padding: 0;
+
+    background: #f4f7fb;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: #1f2937;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   BOUTON RETOUR
+========================================= */
+
+.tout {
+    width: 100%;
+    max-width: 1200px;
+
+    min-height: 70px;
+
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
+
     margin: 20px auto;
+
+    padding: 0 20px;
 }
 
 .retour {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
     text-decoration: none;
+
     color: white;
+
     background: rgb(25, 25, 180);
+
     padding: 11px 17px;
+
     border-radius: 9px;
+
     transition: 0.3s;
 }
 
@@ -27,94 +75,175 @@ body {
 }
 
 
+/* =========================================
+   CONTENEUR PRINCIPAL
+========================================= */
 
 .la {
-    width: 90%;
+    width: calc(100% - 40px);
+
     max-width: 1200px;
+
     margin: 30px auto;
+
     background: white;
+
     padding: 30px;
+
     border-radius: 18px;
+
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
 }
 
+
+/* =========================================
+   EN-TÊTE
+========================================= */
+
 .le {
+    width: 100%;
+
     display: flex;
+
     justify-content: space-between;
     align-items: center;
+
+    gap: 20px;
+
     border-bottom: 3px solid rgb(6, 39, 107);
+
     padding-bottom: 20px;
 }
 
 .le h1 {
     margin: 0;
+
     color: rgb(6, 39, 107);
+
+    font-size: 28px;
+
+    line-height: 1.3;
 }
 
 .le p {
     margin-top: 8px;
+
     color: #777;
+
+    line-height: 1.5;
 }
 
 .les {
+    flex-shrink: 0;
+
     background: #eef4ff;
+
     color: rgb(6, 39, 107);
+
     padding: 12px 20px;
+
     border-radius: 10px;
+
     font-weight: bold;
+
+    white-space: nowrap;
 }
 
+
+/* =========================================
+   INFORMATIONS
+========================================= */
+
 .info {
+    width: 100%;
+
     display: flex;
+
     align-items: center;
+
     gap: 20px;
+
     margin: 30px 0;
+
     padding: 20px;
+
     background: aliceblue;
+
     border-radius: 15px;
 }
 
 .photo {
     width: 70px;
     height: 70px;
+
+    min-width: 70px;
+
     border-radius: 50%;
+
     background: rgb(6, 39, 107);
+
     color: white;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     font-size: 28px;
 }
 
 .info h2 {
     margin: 0 0 10px;
+
     color: rgb(6, 39, 107);
+
+    font-size: 21px;
 }
 
 .info p {
     margin: 5px 0;
+
+    line-height: 1.5;
 }
+
+
+/* =========================================
+   TABLEAU
+========================================= */
 
 .tableau {
     width: 100%;
+
     overflow-x: auto;
+
+    -webkit-overflow-scrolling: touch;
+
+    border-radius: 10px;
 }
 
 .tableau table {
     width: 100%;
+
+    min-width: 650px;
+
     border-collapse: collapse;
 }
 
 .tableau thead {
     background: rgb(6, 39, 107);
+
     color: white;
 }
 
 .tableau th,
 .tableau td {
     padding: 15px;
+
     text-align: center;
+
     border-bottom: 1px solid #e5e7eb;
+
+    white-space: nowrap;
 }
 
 .tableau th:nth-child(2),
@@ -125,6 +254,11 @@ body {
 .tableau tbody tr:hover {
     background: #f7f9fc;
 }
+
+
+/* =========================================
+   RÉSULTATS
+========================================= */
 
 .excellent {
     color: #15803d;
@@ -151,80 +285,487 @@ body {
     font-weight: bold;
 }
 
+
+/* =========================================
+   BOÎTES DE RÉSULTAT
+========================================= */
+
 .resultat {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+
     margin-top: 30px;
 }
 
 .boite {
-    min-width: 250px;
+    width: 100%;
+
+    min-width: 0;
+
     padding: 20px;
+
     background: #f5f8ff;
+
     border-radius: 15px;
+
     display: flex;
+
     align-items: center;
+
     gap: 15px;
 }
 
 .boite i {
     width: 50px;
     height: 50px;
+
+    min-width: 50px;
+
     background: #deecfd;
+
     color: rgb(6, 39, 107);
+
     border-radius: 12px;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     font-size: 22px;
 }
 
 .boite span {
     display: block;
+
     color: #777;
+
     margin-bottom: 5px;
+
+    font-size: 14px;
 }
 
 .boite strong {
     display: block;
+
     color: rgb(6, 39, 107);
+
     font-size: 25px;
+
+    word-break: break-word;
 }
 
+
+/* =========================================
+   DÉCISION
+========================================= */
+
 .decision {
+    width: 100%;
+
     margin-top: 30px;
+
     padding: 20px;
+
     text-align: center;
+
     background: aliceblue;
+
     border-radius: 15px;
 }
 
 .decision h2 {
     color: rgb(6, 39, 107);
+
+    font-size: 23px;
+
+    margin-bottom: 10px;
 }
-.decision i{
+
+.decision i {
     font-size: 50px;
 }
 
-@media (max-width: 700px) {
 
-    .la {
-        width: 95%;
-        padding: 15px;
+/* =========================================
+   TABLETTE
+========================================= */
+
+@media screen and (max-width: 900px) {
+
+    .tout {
+        width: 100%;
+
+        padding: 0 20px;
+
+        margin: 15px auto;
     }
 
-    .le {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
+    .la {
+        width: calc(100% - 30px);
+
+        padding: 25px;
+    }
+
+    .le h1 {
+        font-size: 25px;
     }
 
     .resultat {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* =========================================
+   PETITE TABLETTE / GRAND TÉLÉPHONE
+========================================= */
+
+@media screen and (max-width: 700px) {
+
+    .tout {
+        width: 100%;
+
+        padding: 0 15px;
+
+        margin: 15px auto;
+    }
+
+    .la {
+        width: calc(100% - 20px);
+
+        padding: 20px;
+
+        margin: 20px auto;
+
+        border-radius: 14px;
+    }
+
+    /* HEADER */
+
+    .le {
         flex-direction: column;
+
+        align-items: center;
+
+        text-align: center;
+
+        gap: 15px;
+    }
+
+    .le h1 {
+        font-size: 23px;
+    }
+
+    .le p {
+        font-size: 14px;
+    }
+
+    .les {
+        padding: 10px 16px;
+    }
+
+
+    /* INFORMATIONS */
+
+    .info {
+        flex-direction: column;
+
+        text-align: center;
+
+        padding: 20px 15px;
+
+        gap: 12px;
+    }
+
+    .photo {
+        width: 65px;
+        height: 65px;
+
+        min-width: 65px;
+
+        font-size: 25px;
+    }
+
+    .info h2 {
+        font-size: 19px;
+    }
+
+
+    /* RÉSULTATS */
+
+    .resultat {
+        grid-template-columns: 1fr;
+
+        gap: 15px;
     }
 
     .boite {
         width: 100%;
+
+        padding: 17px;
+    }
+
+
+    /* DÉCISION */
+
+    .decision {
+        padding: 18px 15px;
+    }
+
+    .decision h2 {
+        font-size: 20px;
+    }
+
+    .decision i {
+        font-size: 45px;
+    }
+}
+
+
+/* =========================================
+   TÉLÉPHONE
+========================================= */
+
+@media screen and (max-width: 480px) {
+
+    body {
+        width: 100%;
+
+        overflow-x: hidden;
+    }
+
+
+    /* RETOUR */
+
+    .tout {
+        width: 100%;
+
+        padding: 0 10px;
+
+        min-height: 60px;
+
+        margin: 10px auto;
+    }
+
+    .retour {
+        width: 100%;
+
+        padding: 11px;
+
+        font-size: 13px;
+    }
+
+
+    /* CONTENU */
+
+    .la {
+        width: calc(100% - 10px);
+
+        padding: 15px;
+
+        margin: 15px auto;
+
+        border-radius: 12px;
+    }
+
+
+    /* HEADER */
+
+    .le {
+        padding-bottom: 15px;
+
+        gap: 12px;
+    }
+
+    .le h1 {
+        font-size: 20px;
+    }
+
+    .le p {
+        font-size: 12px;
+
+        margin-top: 5px;
+    }
+
+    .les {
+        width: 100%;
+
+        padding: 9px 12px;
+
+        font-size: 12px;
+
+        text-align: center;
+    }
+
+
+    /* INFORMATIONS */
+
+    .info {
+        margin: 20px 0;
+
+        padding: 16px 12px;
+
+        border-radius: 12px;
+    }
+
+    .photo {
+        width: 58px;
+        height: 58px;
+
+        min-width: 58px;
+
+        font-size: 22px;
+    }
+
+    .info h2 {
+        font-size: 17px;
+
+        margin-bottom: 7px;
+    }
+
+    .info p {
+        font-size: 12px;
+
+        margin: 4px 0;
+    }
+
+
+    /* TABLEAU */
+
+    .tableau {
+        width: 100%;
+
+        overflow-x: auto;
+    }
+
+    .tableau table {
+        min-width: 600px;
+    }
+
+    .tableau th,
+    .tableau td {
+        padding: 11px 10px;
+
+        font-size: 12px;
+    }
+
+
+    /* BOÎTES */
+
+    .resultat {
+        margin-top: 20px;
+
+        gap: 12px;
+    }
+
+    .boite {
+        padding: 15px;
+
+        gap: 12px;
+    }
+
+    .boite i {
+        width: 43px;
+        height: 43px;
+
+        min-width: 43px;
+
+        font-size: 18px;
+
+        border-radius: 9px;
+    }
+
+    .boite span {
+        font-size: 12px;
+    }
+
+    .boite strong {
+        font-size: 20px;
+    }
+
+
+    /* DÉCISION */
+
+    .decision {
+        margin-top: 20px;
+
+        padding: 17px 10px;
+    }
+
+    .decision h2 {
+        font-size: 18px;
+    }
+
+    .decision i {
+        font-size: 40px;
+    }
+}
+
+
+/* =========================================
+   TRÈS PETIT TÉLÉPHONE
+========================================= */
+
+@media screen and (max-width: 360px) {
+
+    .tout {
+        padding: 0 7px;
+    }
+
+    .la {
+        width: 100%;
+
+        padding: 12px;
+
+        margin: 10px auto;
+    }
+
+    .le h1 {
+        font-size: 18px;
+    }
+
+    .le p {
+        font-size: 11px;
+    }
+
+    .info {
+        padding: 14px 10px;
+    }
+
+    .info h2 {
+        font-size: 16px;
+    }
+
+    .info p {
+        font-size: 11px;
+    }
+
+    .tableau table {
+        min-width: 550px;
+    }
+
+    .boite {
+        padding: 13px;
+    }
+
+    .boite i {
+        width: 40px;
+        height: 40px;
+
+        min-width: 40px;
+    }
+
+    .boite strong {
+        font-size: 18px;
+    }
+
+    .decision h2 {
+        font-size: 16px;
     }
 }

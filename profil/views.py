@@ -10,6 +10,7 @@ from django.db import transaction
 from school.matricule import generematricule,generepassword,genereemail
 from django.contrib import messages
 from bulletin.models import *
+from django.db.models import Q
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
@@ -43,12 +44,8 @@ def connexion(request):
     return render(request, "template_profil/login.html", {'form': form})
 
 
-
 def deconnexion (request):
     return redirect('connexion')
-
-
-
 
 def ajouter_etudiant(request):
     forms = Etudiantform()
@@ -162,17 +159,43 @@ def accueil_etudiant(request):
 
         
 def liste_etudiant(request):
-   etudiant = Etudiant.objects.all()
-   return render(request,"template_profil/liste_etudiant.html",{'etudiant':etudiant})
+        recherche = request.GET.get('q', '').strip()
+        etudiant = Etudiant.objects.all()
+        if recherche:
+                etudiant = etudiant.filter(
+                    Q(nom__icontains=recherche) |
+                    Q(prenom__icontains=recherche) |
+                    Q(matricule__icontains=recherche) |
+                    Q(classe__classe__icontains=recherche)
+                )
 
+        return render(request, "template_profil/liste_etudiant.html", {'etudiant': etudiant, })
+   
 
 def liste_professeur(request):
+   recherche = request.GET.get('q', '').strip()
    professeur = Professeur.objects.all()
+   if recherche:
+    professeur = professeur.filter(
+    Q(nom__icontains=recherche) |
+    Q(matiere__matiere__icontains=recherche) |
+    Q(prenom__icontains=recherche) |
+    Q(classe__classe__icontains=recherche)
+    )
    return render(request,"template_profil/liste_professeur.html",{'professeur':professeur})
 
 
 def liste_utilisateur(request):
+   recherche = request.GET.get('q', '').strip()
    utilisateurs = Utilisateur.objects.all()
+   if recherche:
+        utilisateurs = utilisateurs.filter(
+        Q(first_name__icontains=recherche) |
+        Q(last_name__icontains=recherche) |
+        Q(username__icontains=recherche) |
+        Q(email__icontains=recherche) |
+        Q(role__icontains=recherche)
+    )
    return render(request,"template_profil/liste_utilisateur.html",{'utilisateurs':utilisateurs})
 
 
@@ -235,7 +258,6 @@ def supprimer_professeur(request, id):
         return redirect("liste_professeur")
     return render(request,"template_profil/supprimer_professeur.html",{"professeur": professeur})
 
-
 def home(request):
    return render(request,"template_profil/base.html")
 
@@ -245,21 +267,30 @@ def lister_etudiant_prof(request):
         professeur = request.user.professeur
         classe = professeur.classe
         matiere = professeur.matiere
-        if classe:
-            etudiants = Etudiant.objects.filter(classe=classe)
-        else:
-            etudiants = Etudiant.objects.none()
+        recherche = request.GET.get('q', '').strip()
+        etudiants = Etudiant.objects.filter(classe=classe)
+        if recherche:
+            etudiants = etudiants.filter(
+                Q(nom__icontains=recherche) |
+                Q(prenom__icontains=recherche) |
+                Q(matricule__icontains=recherche)
+            )
+
     except ObjectDoesNotExist:
         professeur = None
         classe = None
         matiere = None
+        recherche = ''
         etudiants = Etudiant.objects.none()
 
     context = {
         'etudiants': etudiants,
         'matiere': matiere,
         'classe': classe,
-        'professeur': professeur
+        'professeur': professeur,
+        'recherche': recherche,
     }
-    return render(request, "template_profil/lister_etudiant_prof.html", context)
+
+    return render(request,"template_profil/lister_etudiant_prof.html", context)
+
 

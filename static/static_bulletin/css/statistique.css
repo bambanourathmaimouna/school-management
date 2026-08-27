@@ -1,0 +1,399 @@
+.tout {
+    width: 80%;
+    padding: 25px 35px 50px;
+    margin: 30px auto;
+}
+.retour{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.la{
+    width: 15%;
+    height: 70px;
+    border-radius: 20px;
+    background-color: rgb(25, 25, 180);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+.la:hover {
+    background: rgba(21, 135, 201, 0.911);
+}
+
+.total {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.titre {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+.titre i{
+    font-size: 25px;
+}
+.tableau {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #eeeeee;
+    margin-bottom: 35px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.tableau table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableau thead {
+    background: rgb(6, 39, 107);
+}
+
+.tableau th {
+    padding: 15px 20px;
+    color: white;
+    text-align: left;
+}
+
+.tableau td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.tableau tbody tr:hover {
+    background: #faf9ff;
+}
+
+.total .carte-statistique {
+    background: white;
+    border: 1px solid #eeeeee;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+}
+
+.total .icone {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: #f0edff;
+    color: #0a1dc9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.total span {
+    display: block;
+    color: #888;
+    font-size: 13px;
+}
+
+.total strong {
+    font-size: 23px;
+    color: #292d32;
+}
+
+.titre h2 {
+    margin: 0;
+    color: rgb(12, 12, 196);
+}
+
+.titre p {
+    font-size: 16px;
+    color: #666668;
+}
+.header{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+}
+.header i{
+    padding: 10px 10px;
+    background-color: #0a1dc916;
+    border-radius: 8px;
+    font-size: 25px;
+    color: #060f63;
+}
+
+@media (max-width: 1000px) {
+    .total {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .tout {
+        padding: 15px;
+    }
+
+    .total {
+        grid-template-columns: 1fr;
+    }
+
+    .tableau {
+        overflow-x: auto;
+    }
+
+    .tableau table {
+        min-width: 700px;
+    }
+}
+
+/* =========================
+   TABLETTE
+========================= */
+
+@media (max-width: 1000px) {
+
+    .tout {
+        width: 90%;
+        padding: 25px 25px 40px;
+    }
+
+    .total {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .la {
+        width: 180px;
+        height: 60px;
+        font-size: 17px;
+    }
+
+    .retour {
+        height: 80px;
+    }
+
+    .tableau th,
+    .tableau td {
+        padding: 13px 15px;
+    }
+
+    .titre {
+        gap: 12px;
+    }
+
+    .titre h2 {
+        font-size: 22px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .tout {
+        width: calc(100% - 20px);
+        padding: 20px 15px 30px;
+        margin: 20px auto;
+    }
+
+
+    /* BOUTON RETOUR */
+
+    .retour {
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+        justify-content: center;
+    }
+
+    .la {
+        width: 100%;
+        max-width: 250px;
+        height: 52px;
+        border-radius: 12px;
+        font-size: 16px;
+    }
+
+
+    /* CARTES STATISTIQUES */
+
+    .total {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 30px;
+    }
+
+    .total .carte-statistique {
+        padding: 15px;
+        gap: 12px;
+    }
+
+    .total .icone {
+        width: 45px;
+        height: 45px;
+        flex-shrink: 0;
+    }
+
+    .total strong {
+        font-size: 20px;
+    }
+
+    .total span {
+        font-size: 12px;
+    }
+
+
+    /* TITRE */
+
+    .titre {
+        gap: 10px;
+        margin-bottom: 18px;
+        flex-wrap: wrap;
+    }
+
+    .titre i {
+        font-size: 22px;
+    }
+
+    .titre h2 {
+        font-size: 19px;
+    }
+
+    .titre p {
+        width: 100%;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+
+    /* HEADER */
+
+    .header {
+        gap: 15px;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    .header i {
+        padding: 8px;
+        font-size: 21px;
+    }
+
+
+    /* TABLEAU */
+
+    .tableau {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 12px;
+    }
+
+    .tableau table {
+        min-width: 650px;
+    }
+
+    .tableau th {
+        padding: 12px 12px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .tableau td {
+        padding: 12px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+}
+
+
+/* =========================
+   PETIT MOBILE
+========================= */
+
+@media (max-width: 450px) {
+    .header{
+        width: 100%;
+    }
+    .tout {
+        width: 100%;
+        width: calc(100% - 12px);
+        padding: 15px 10px 25px;
+        margin: 15px auto;
+    }
+
+
+    /* RETOUR */
+
+    .la {
+        width: 100%;
+        max-width: none;
+        height: 48px;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+
+
+    /* CARTES */
+
+    .total {
+        gap: 10px;
+    }
+
+    .total .carte-statistique {
+        padding: 13px;
+    }
+
+    .total .icone {
+        width: 40px;
+        height: 40px;
+        border-radius: 9px;
+    }
+
+    .total strong {
+        font-size: 18px;
+    }
+
+
+    /* TITRES */
+
+    .titre i {
+        font-size: 19px;
+    }
+
+    .titre h2 {
+        font-size: 17px;
+    }
+
+    .titre p {
+        font-size: 13px;
+    }
+
+
+    /* TABLEAU */
+
+    .tableau table {
+        min-width: 600px;
+    }
+
+    .tableau th,
+    .tableau td {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+}

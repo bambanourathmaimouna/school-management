@@ -15,8 +15,11 @@
     
     <form class="recherche">
         <label for="recherche-etudiant"></label>
-        <input type="search" name="q" id="recherche-etudiant" placeholder="Rechercher un professeur...">
-        <button type="submit">Rechercher</button>
+        <input type="search" name="q" id="recherche-etudiant" placeholder="Rechercher un professeur..." value="{{ request.GET.q }}">
+        <button type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            Rechercher
+        </button>
     </form>
     {% if messages %}
             <div class="messages">
