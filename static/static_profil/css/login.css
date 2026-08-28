@@ -130,6 +130,57 @@ form button:hover {
     box-shadow: 0 5px 15px rgba(11, 30, 201, 0.3);
 }
 
+.messages-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    width: 350px;
+    max-width: calc(100% - 40px);
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding: 15px 18px;
+    margin-bottom: 10px;
+
+    background: white;
+    border-radius: 10px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+
+    font-size: 15px;
+    animation: message-apparition 0.3s ease;
+}
+
+.message.success {
+    border-left: 5px solid #16a34a;
+}
+
+.message.error {
+    border-left: 5px solid #dc2626;
+}
+
+.message.warning {
+    border-left: 5px solid #f59e0b;
+}
+
+.message.info {
+    border-left: 5px solid #2563eb;
+}
+
+.message-close {
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    cursor: pointer;
+    color: #555;
+}
+
 
 /* =========================
    TABLETTE
