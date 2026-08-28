@@ -1,241 +1,70 @@
-/* =========================
-   GLOBAL
-========================= */
-
 * {
     box-sizing: border-box;
 }
-
 body {
-    background: linear-gradient(
-        135deg,
-        #0b1ec9,
-        aliceblue,
-        #222ceb
-    );
-
+    background: linear-gradient( 135deg,#0b1ec9, aliceblue,#222ceb);
     margin: 0;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     min-height: 100vh;
-
     font-family: Arial, sans-serif;
-
     padding: 20px;
 }
-
-
-/* =========================
-   FORMULAIRE
-========================= */
-
 form {
     width: 30%;
     min-height: 300px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     border-radius: 20px;
     border: 1px solid black;
-
     background-color: rgba(255, 255, 255, 0.699);
-
     padding: 30px 20px;
-
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
-
-
-/* =========================
-   CHAMPS
-========================= */
-
 form p {
     width: 70%;
-
     display: flex;
     flex-direction: column;
-
     margin: 10px 0;
 }
-
 form label {
     margin-bottom: 6px;
-
     font-weight: bold;
-
     color: rgb(30, 30, 30);
 }
 
 form input {
     width: 100%;
     height: 40px;
-
     border-radius: 8px;
     border: 1px solid #999;
-
     padding: 0 10px;
-
     font-size: 14px;
-
     outline: none;
-
     background-color: white;
 }
-
 form input:focus {
     border-color: #0b1ec9;
-
     box-shadow: 0 0 5px rgba(11, 30, 201, 0.3);
 }
-
-
-/* =========================
-   BOUTON
-========================= */
-
 form button {
     width: 70%;
     height: 45px;
-
     margin-top: 20px;
-
     color: white;
-
     font-size: 18px;
     font-weight: bold;
-
     border-radius: 20px;
-
     background-color: rgba(65, 65, 211, 0.777);
-
     border: none;
-
     cursor: pointer;
-
     transition: 0.3s ease;
 }
-
 form button:hover {
     background-color: #0b1ec9;
-
     transform: translateY(-2px);
-
     box-shadow: 0 5px 15px rgba(11, 30, 201, 0.3);
-}
-
-
-/* =========================
-   TABLETTE
-========================= */
-
-@media (max-width: 1000px) {
-
-    form {
-        width: 50%;
-        padding: 30px 20px;
-    }
-
-    form p {
-        width: 75%;
-    }
-
-    form button {
-        width: 75%;
-    }
-
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 600px) {
-
-    body {
-        padding: 15px;
-    }
-
-    form {
-        width: 100%;
-        max-width: 450px;
-
-        min-height: 320px;
-
-        padding: 30px 20px;
-
-        border-radius: 16px;
-    }
-
-    form p {
-        width: 90%;
-        margin: 9px 0;
-    }
-
-    form label {
-        font-size: 14px;
-    }
-
-    form input {
-        height: 42px;
-        font-size: 14px;
-    }
-
-    form button {
-        width: 90%;
-        height: 45px;
-
-        font-size: 16px;
-    }
-
-}
-
-
-/* =========================
-   PETIT MOBILE
-========================= */
-
-@media (max-width: 400px) {
-
-    body {
-        padding: 10px;
-    }
-
-    form {
-        width: 100%;
-
-        min-height: 300px;
-
-        padding: 25px 12px;
-
-        border-radius: 14px;
-    }
-
-    form p {
-        width: 95%;
-    }
-
-    form label {
-        font-size: 13px;
-    }
-
-    form input {
-        height: 40px;
-        font-size: 13px;
-    }
-
-    form button {
-        width: 95%;
-        height: 42px;
-
-        font-size: 15px;
-    }
-
 }

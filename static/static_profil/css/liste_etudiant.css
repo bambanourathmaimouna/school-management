@@ -17,43 +17,28 @@ body {
 
 .recherche input {
     width: 250px;
-
     height: 40px;
-
     padding: 5px 10px;
-
     border: 1px solid #ccc;
-
     border-radius: 5px;
-
     outline: none;
-
     font-size: 14px;
 }
 
 .recherche input:focus {
     border-color: rgb(33, 33, 230);
-
     box-shadow: 0 0 4px rgba(33, 33, 230, 0.25);
 }
 
 .recherche button {
     padding: 10px 15px;
-
     background-color: rgb(33, 33, 230);
-
     color: white;
-
     border: none;
-
     border-radius: 5px;
-
     font-size: 16px;
-
     cursor: pointer;
-
     margin-left: 8px;
-
     transition: 0.25s ease;
 }
 
@@ -108,33 +93,23 @@ body {
 
 .tableau-etudiants thead {
     background-color: rgb(6, 39, 107);
-
     color: #ffffff;
 }
 
 .tableau-etudiants th {
     padding: 16px 14px;
-
     text-align: center;
-
     font-size: 14px;
-
     font-weight: 700;
-
     text-transform: uppercase;
-
     letter-spacing: 0.5px;
 }
 
 .tableau-etudiants td {
     padding: 14px;
-
     text-align: center;
-
     border-bottom: 1px solid #eeeeee;
-
     color: #333333;
-
     font-size: 14px;
 }
 
@@ -251,214 +226,3 @@ body {
     font-style: italic;
 }
 
-@media (max-width: 900px) {
-
-    .tableau-etudiants {
-        width: 100%;
-
-        font-size: 13px;
-    }
-
-    .tableau-etudiants th,
-    .tableau-etudiants td {
-        padding: 10px 7px;
-    }
-
-}
-
-
-/* =========================
-   TABLETTE
-========================= */
-
-@media (max-width: 900px) {
-
-    .barre-outils {
-        margin: 25px 15px;
-        gap: 15px;
-    }
-
-    .recherche input {
-        width: 200px;
-    }
-
-    .tableau-etudiants {
-        width: calc(100% - 30px);
-        font-size: 13px;
-    }
-
-    .tableau-etudiants th,
-    .tableau-etudiants td {
-        padding: 11px 8px;
-    }
-
-    .lien {
-        min-width: 48px;
-        padding: 6px 8px;
-    }
-
-    .modifier,
-    .supprimer {
-        width: 35px;
-        height: 35px;
-    }
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 650px) {
-
-    body {
-        overflow-x: hidden;
-    }
-
-    /* BARRE D'OUTILS */
-
-    .barre-outils {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 15px;
-        margin: 20px 10px;
-    }
-
-    /* RECHERCHE */
-
-    .recherche {
-        display: flex;
-        width: 100%;
-        gap: 7px;
-    }
-
-    .recherche input {
-        width: 100%;
-        height: 42px;
-        box-sizing: border-box;
-    }
-
-    .recherche button {
-        flex-shrink: 0;
-        height: 42px;
-        padding: 10px 13px;
-        margin-left: 0;
-    }
-
-    /* BOUTONS */
-
-    .retour,
-    .ajouter {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        box-sizing: border-box;
-        padding: 12px;
-    }
-
-    /* TABLEAU */
-
-    .tableau-etudiants {
-        display: block;
-        width: calc(100% - 20px);
-        margin: 25px 10px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-        border-radius: 10px;
-    }
-
-    .tableau-etudiants table {
-        min-width: 750px;
-    }
-
-    .tableau-etudiants th {
-        padding: 12px 10px;
-        font-size: 12px;
-    }
-
-    .tableau-etudiants td {
-        padding: 11px 10px;
-        font-size: 13px;
-    }
-
-    /* LIENS */
-
-    .lien {
-        min-width: 48px;
-        padding: 6px 8px;
-    }
-
-    .lien small {
-        font-size: 9px;
-    }
-
-    /* BOUTON MODIFIER */
-
-    .modifier {
-        width: 35px;
-        height: 35px;
-        margin-left: 3px;
-    }
-
-    /* BOUTON SUPPRIMER */
-
-    .supprimer {
-        width: 35px;
-        height: 35px;
-        margin-left: 3px;
-    }
-
-}
-
-
-/* =========================
-   PETIT MOBILE
-========================= */
-
-@media (max-width: 440px) {
-    .barre-outils {
-        margin: 15px 8px;
-        display: flex;
-        flex-direction: column;
-    }
-    .recherche {
-        width: 100%;
-    }
-    .recherche input {
-        height: 40px;
-        font-size: 13px;
-        padding: 5px 8px;
-    }
-    .recherche button {
-        height: 40px;
-        padding: 8px 11px;
-        font-size: 14px;
-    }
-    .retour,
-    .ajouter {
-        font-size: 13px;
-        padding: 11px;
-    }
-    .tableau-etudiants {
-        width: calc(100% - 16px);
-        margin: 20px 8px;
-    }
-    .tableau-etudiants th {
-        font-size: 11px;
-        padding: 10px 8px;
-    }
-    .tableau-etudiants td {
-        font-size: 12px;
-        padding: 10px 8px;
-    }
-    .modifier,
-    .supprimer {
-        width: 32px;
-        height: 32px;
-    }
-
-}

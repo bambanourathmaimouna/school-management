@@ -1,4 +1,3 @@
-
 *{
     margin: 0;
     padding: 0;
@@ -118,45 +117,24 @@ body {
     color: rgba(40, 40, 232, 0.856);
     font-size: 40px;
 }
-/* ================================
-   BARRE ACTIONS
-================================ */
-
 .barre-actions {
     width: 90%;
     max-width: 1200px;
-
     margin: 30px auto;
     padding: 25px;
-
     background: white;
-
     border-radius: 15px;
-
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-
     box-sizing: border-box;
 }
-
 .barre-actions h3 {
     margin: 0 0 20px;
-
     color: #1013b3;
-
     font-size: 20px;
-
     text-align: left;
-
     padding-bottom: 12px;
-
     border-bottom: 1px solid #eeeeee;
 }
-
-
-/* ================================
-   ACTIONS RAPIDES
-================================ */
-
 .actions-rapides {
     width: 100%;
 
@@ -166,11 +144,6 @@ body {
 
     gap: 15px;
 }
-
-
-/* ================================
-   BOUTON
-================================ */
 .action-rapide {
     width: 100%;
     min-width: 0;
@@ -206,153 +179,4 @@ body {
     color: white;
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(111, 66, 193, 0.25);
-}
-
-
-/* ================================
-   TABLETTE
-================================ */
-
-@media screen and (max-width: 900px) {
-
-    .barre-actions {
-        width: 95%;
-        padding: 20px;
-    }
-
-    .actions-rapides {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .action-rapide {
-        font-size: 14px;
-        padding: 13px;
-    }
-}
-
-
-/* ================================
-   MOBILE
-================================ */
-
-@media screen and (max-width: 600px) {
-    .barre-actions {
-        width: calc(100% - 20px);
-        margin: 20px auto;
-        padding: 16px;
-        border-radius: 12px;
-    }
-
-    .barre-actions h3 {
-        font-size: 17px;
-        text-align: center;
-        margin-bottom: 15px;
-    }
-
-    .actions-rapides {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-    .action-rapide {
-        width: 100%;
-        min-height: 48px;
-        padding: 12px;
-        font-size: 13px;
-        gap: 8px;
-    }
-
-    .action-rapide i {
-        font-size: 16px;
-    }
-}
-
-
-/* ================================
-   PETIT TÉLÉPHONE
-================================ */
-
-@media screen and (max-width: 380px) {
-    .barre-actions {
-        width: calc(100% - 10px);
-        padding: 13px;
-    }
-    .action-rapide {
-        font-size: 12px;
-        padding: 11px;
-    }
-}
-.action-rapide:hover {
-    background: #398ff1;
-    color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(111, 66, 193, 0.25);
-}
-
-@media (max-width: 480px) {
-    .logo{
-        width: 50%;
-        height: 50px;
-    }
-    .actions{
-        width: 30%;
-        height: 100vh;
-        font-size: 8px;
-    }
-    .actions i{
-        font-size: 16px;
-    }
-    .titre{
-        height: 50px;
-        margin: 10px auto;
-    }
-    .titre h1{
-        font-size: 10px;
-        margin: 0;
-    }
-    .titre p{
-        font-size: 9px;
-    }
-    .Statistiques{
-        display: flex;
-        flex-direction: column;
-        height: 230px;
-        width: 100%;
-    }
-    .Statistiques .la{
-        align-items: center;
-        width: 70%;
-        height: 40px;
-        border-radius: 8px;
-    }
-    .Statistiques h4{
-        font-size: 10px;
-    }
-    .Statistiques .le h1{
-        font-size: 10px;
-    }
-    .Statistiques .le{
-        justify-content: center;
-    }
-    .Statistiques .la i{
-        width: 20px;
-        height: 20px;
-        padding: 5px;
-        border-radius: 5px;
-        font-size: 8px;
-    }
-    .barre-actions{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-    .actions-rapides {
-        flex-wrap: wrap;
-    }
-    .action-rapides{
-        width: 100%;
-        height: 40px;
-        display: flex;
-        flex-direction: column;
-    }
 }

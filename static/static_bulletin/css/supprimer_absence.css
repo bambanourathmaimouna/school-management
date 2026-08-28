@@ -81,30 +81,3 @@ body {
 }
 
 
-@media (max-width: 900px) {
-
-    .tout {
-        width: 50%;
-    }
-}
-
-
-@media (max-width: 600px) {
-
-    .tout {
-        width: auto;
-        margin: 30px 15px;
-        padding: 25px 20px;
-    }
-
-    .formulaire {
-        flex-direction: column;
-    }
-
-    .supprimer,
-    .annuler {
-        width: 100%;
-
-        box-sizing: border-box;
-    }
-}
