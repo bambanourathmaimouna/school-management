@@ -16,10 +16,13 @@ load_dotenv()
 # ---------------------------------------------------------
 # BASE DIR
 # ---------------------------------------------------------
-env = environ.Env(DEBUG = (bool,False))
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+env = environ.Env()
+
+env= environ.Env.read_env(BASE_DIR / ".env")
 
 # ---------------------------------------------------------
 # SECURITY
@@ -27,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = env("SECRET_KEY")
 
-DEBUG = env("DEBUG")
+DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = ['*']
 
@@ -114,8 +117,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django_libsql",
-        "NAME": os.environ.get("TURSO_DATABASE_URL"),
-        "AUTH_TOKEN": os.environ.get("TURSO_AUTH_TOKEN"),
+        "NAME":env("TURSO_DATABASE_URL"),
+        "AUTH_TOKEN": env("TURSO_AUTH_TOKEN"),
     }
 }
 
