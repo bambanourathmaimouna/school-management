@@ -30,7 +30,7 @@ environ.Env.read_env(BASE_DIR / ".env")
 
 SECRET_KEY = 'django-insecure-hegr#y@9y@4!^!o-fm=%9-jve#)5q)d9-3ltsynbah+#1unm62'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 

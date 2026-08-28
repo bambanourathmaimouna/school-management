@@ -190,25 +190,56 @@ def bulletin(request):
     context = {"etudiant": etudiant, "notes": notes, "moyenne_generale": round(moyenne_generale, 2), "total_coefficients": total_coefficients,}
     return render(request,"template_bulletin/bulletin.html",context)
 
+
+
 def statistique(request):
     classes = Classe.objects.all()
     total_etudiants = Etudiant.objects.count()
     total_classes = Classe.objects.count()
     total_notes = Note.objects.count()
     total_matieres = Matiere.objects.count()
-    moyenne_generale = Note.objects.aggregate(moyenne=Avg('note'))['moyenne']
-    if moyenne_generale is None:
+    toutes_les_notes = Note.objects.values_list('note', flat=True)
+    notes = [float(note) for note in toutes_les_notes]
+    if notes:
+        moyenne_generale = sum(notes) / len(notes)
+    else:
         moyenne_generale = 0
     statistiques = []
     for classe in classes:
         etudiants = Etudiant.objects.filter(classe=classe)
-        meilleurs_etudiants = (etudiants.annotate(moyenne=Avg('note__note')).order_by('-moyenne')[:5])
-        moyenne_classe = ( Note.objects.filter(etudiant__classe=classe).aggregate(moyenne=Avg('note'))['moyenne'])
-        if moyenne_classe is None:
+        resultats_etudiants = []
+        for etudiant in etudiants:
+            notes_etudiant = Note.objects.filter( etudiant=etudiant).values_list('note', flat=True)
+            notes_etudiant = [ float(note) for note in notes_etudiant]
+            if notes_etudiant:
+                moyenne = sum(notes_etudiant) / len(notes_etudiant)
+            else:
+                moyenne = 0
+            resultats_etudiants.append({
+                'etudiant': etudiant,
+                'moyenne': moyenne,
+            })
+        resultats_etudiants.sort( key=lambda x: x['moyenne'], reverse=True)
+        meilleurs_etudiants = resultats_etudiants[:5]
+        notes_classe = Note.objects.filter( etudiant__classe=classe).values_list('note', flat=True)
+        notes_classe = [float(note) for note in notes_classe]
+        if notes_classe:
+            moyenne_classe = sum(notes_classe) / len(notes_classe)
+        else:
             moyenne_classe = 0
         nombre_etudiants = etudiants.count()
-        etudiants_admis = ( etudiants.annotate(moyenne=Avg('note__note')).filter(moyenne__gte=10) .count())
-        etudiants_non_admis = ( etudiants.annotate(moyenne=Avg('note__note')).filter(moyenne__lt=10).count() )
+        etudiants_admis = 0
+        etudiants_non_admis = 0
+        for etudiant in etudiants:
+            notes_etudiant = Note.objects.filter(etudiant=etudiant).values_list('note', flat=True)
+            notes_etudiant = [float(note)for note in notes_etudiant]
+            if notes_etudiant:
+                moyenne = sum(notes_etudiant) / len(notes_etudiant)
+                if moyenne >= 10:
+                    etudiants_admis += 1
+                else:
+                    etudiants_non_admis += 1
+
         statistiques.append({
             'classe': classe,
             'etudiants': meilleurs_etudiants,
@@ -226,19 +257,4 @@ def statistique(request):
         'moyenne_generale': moyenne_generale,
     }
 
-    return render( request,"template_bulletin/statistique.html", context)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+    return render(request,"template_bulletin/statistique.html",context)
