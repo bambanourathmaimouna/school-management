@@ -33,7 +33,7 @@ class Professeur(models.Model):
     nom = models.CharField(max_length=100)
     prenom = models.CharField(max_length=100)
     classe = models.ForeignKey('school.classe', on_delete=models.CASCADE)
-    utilisateur = models.OneToOneField(Utilisateur, on_delete=models.CASCADE ,null=True)
+    utilisateur = models.OneToOneField(Utilisateur, on_delete=models.CASCADE)
     matiere = models.ForeignKey('school.matiere', on_delete=models.CASCADE, related_name='professeurs')    
 
     def __str__(self):
