@@ -61,6 +61,10 @@ urlpatterns = [
     path("mes_absences/",mes_absences,name="mes_absences"),
     path("accueil_etudiant/",accueil_etudiant,name="accueil_etudiant"),
     path("bulletin/",bulletin,name="bulletin"),
-    path("statistique/",statistique,name="statistique")
+    path("statistique/",statistique,name="statistique"),
+
+    path('connexion/', connexion, name='connexion'),
+    path('deconnexion/', deconnexion, name='deconnexion'),
+
     
 ]
