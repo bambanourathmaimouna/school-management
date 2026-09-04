@@ -101,7 +101,7 @@ def ajouter_professeur(request):
 
 
 
-
+@login_required(login_url='connexion')
 def accueil_admin(request):
     context={
     'nbr_etudiant' : Etudiant.objects.count(),
@@ -114,7 +114,7 @@ def accueil_admin(request):
     }
     return render (request,"template_profil/accueil_admin.html",context)
 
-
+@login_required(login_url='connexion')
 def accueil_professeur(request):
     professeur = request.user.professeur
     etudiants = Etudiant.objects.filter(classe=professeur.classe)
@@ -133,7 +133,7 @@ def accueil_professeur(request):
     }
     return render(request,"template_profil/accueil_professeur.html",context)
 
-
+@login_required(login_url='connexion')
 def accueil_etudiant(request):
     etudiant = get_object_or_404(Etudiant,user_name=request.user)
     notes = Note.objects.filter(etudiant=etudiant).order_by("-id")
