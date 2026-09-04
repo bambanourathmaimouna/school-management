@@ -33,6 +33,7 @@ SECRET_KEY = 'django-insecure-hegr#y@9y@4!^!o-fm=%9-jve#)5q)d9-3ltsynbah+#1unm62
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://nourath.pythonanywhere.com',]
 
 # ---------------------------------------------------------
 # APPLICATIONS
