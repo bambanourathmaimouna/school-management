@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from .forms import *
 from .models import *
 from school.forms import *
@@ -24,10 +24,10 @@ def connexion(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
+            user = authenticate( request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                role = getattr(user, 'role', None) 
+                role = getattr(user, 'role', None)
                 if role == 'admin':
                     return redirect("accueil_admin")
                 elif role == 'professeur':
@@ -35,16 +35,18 @@ def connexion(request):
                 elif role == 'etudiant':
                     return redirect("accueil_etudiant")
                 else:
-                    messages.error(request, "Aucun rôle attribué à cet utilisateur.")
-                    return redirect("login")  
+                    messages.error( request,"Aucun rôle attribué à cet utilisateur.")
+                    return redirect("connexion")
             else:
-                messages.error(request, "Nom d'utilisateur ou mot de passe incorrect.")
+                messages.error( request,"Nom d'utilisateur ou mot de passe incorrect.")
     else:
         form = Connexionform()
-    return render(request, "template_profil/login.html", {'form': form})
+
+    return render(request,"template_profil/login.html",{'form': form})
 
 
-def deconnexion (request):
+def deconnexion(request):
+    logout(request)
     return redirect('connexion')
 
 def ajouter_etudiant(request):
